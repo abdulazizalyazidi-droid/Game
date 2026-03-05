@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Tajawal',sans-serif;background:#0f0c1a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+body{font-family:'Tajawal',sans-serif;background:#0f0c1a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:60px}
 .card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:40px 36px;width:90%;max-width:360px;text-align:center;box-shadow:0 0 60px rgba(130,80,255,0.3)}
 h1{color:#fff;font-size:2rem;font-weight:900;margin-bottom:6px}
 .sub{color:#a78bfa;font-size:1rem;margin-bottom:28px}
@@ -19,22 +19,53 @@ input:focus{border-color:#a78bfa}
 button{width:100%;padding:14px;font-size:1.1rem;font-family:'Tajawal',sans-serif;font-weight:700;border:none;border-radius:14px;cursor:pointer;transition:all .25s}
 #gb{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;margin-bottom:10px}
 #rb{background:rgba(255,255,255,0.08);color:#c4b5fd;border:1px solid rgba(167,139,250,0.3)}
-#msg{margin-top:20px;font-size:1.05rem;font-weight:700;min-height:30px}
-.h{color:#f87171}.l{color:#60a5fa}.w{color:#4ade80;font-size:1.3rem}.lo{color:#fb923c}
+#msg{margin-top:20px;font-size:1.2rem;font-weight:900;min-height:40px;padding:10px;border-radius:12px}
+.h{color:#f87171;background:rgba(248,113,113,0.1)}
+.l{color:#60a5fa;background:rgba(96,165,250,0.1)}
+.w{color:#4ade80;font-size:1.3rem;background:rgba(74,222,128,0.1)}
+.lo{color:#fb923c;background:rgba(251,146,60,0.1)}
 .hist{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .chip{background:rgba(255,255,255,0.07);border-radius:8px;padding:4px 12px;font-size:.85rem;color:#e2e8f0;border:1px solid rgba(255,255,255,0.1)}
-.ad-bar{
-  width:100%;
-  text-align:center;
-  padding:12px;
-  background:linear-gradient(135deg,#7c3aed,#4f46e5);
-  color:white;
-  font-family:'Tajawal',sans-serif;
-  font-size:1.1rem;
-  font-weight:900;
-  letter-spacing:1px;
-  position:fixed;
-  bottom:0;
+.ad-bar{width:100%;text-align:center;padding:12px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:1px;position:fixed;bottom:0;left:0}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🎯 خمّن الرقم</h1>
+<p class="sub">تحدِّ نفسك واكتشف الرقم الغامض!</p>
+<div class="badge">من 1 إلى 100</div>
+<div class="att">المحاولات المتبقية: <span id="al">7</span></div>
+<input type="number" id="gi" placeholder="أدخل تخمينك..." min="1" max="100" inputmode="numeric">
+<button id="gb" onclick="g()">تخمين 🚀</button>
+<button id="rb" onclick="r()">🔄 لعبة جديدة</button>
+<div id="msg"></div>
+<div class="hist" id="hist"></div>
+</div>
+<div class="ad-bar">☕ استراحة بوصالح</div>
+<script>
+let s,a,m=7,gs;
+function r(){s=Math.floor(Math.random()*100)+1;a=0;gs=[];document.getElementById('al').textContent=m;document.getElementById('msg').textContent='';document.getElementById('msg').className='';document.getElementById('hist').innerHTML='';document.getElementById('gi').value='';document.getElementById('gi').disabled=false;document.getElementById('gb').disabled=false}
+function g(){
+  const i=document.getElementById('gi');
+  i.blur();
+  const v=parseInt(i.value),msg=document.getElementById('msg');
+  if(isNaN(v)||v<1||v>100){msg.textContent='⚠️ أدخل رقماً بين 1 و 100!';msg.className='h';return}
+  if(gs.includes(v)){msg.textContent='🔁 جربت هذا الرقم!';msg.className='h';return}
+  a++;gs.push(v);const l=m-a;
+  document.getElementById('al').textContent=l;
+  const c=document.createElement('div');c.className='chip';c.textContent=v;
+  document.getElementById('hist').appendChild(c);
+  i.value='';
+  if(v===s){msg.textContent='🎉 صح! الرقم '+s+' في '+a+' محاولة!';msg.className='w';i.disabled=true;document.getElementById('gb').disabled=true}
+  else if(l===0){msg.textContent='😞 انتهت المحاولات! كان '+s;msg.className='lo';i.disabled=true;document.getElementById('gb').disabled=true}
+  else if(v<s){msg.textContent='📈 الرقم أكبر! ('+l+' متبقية)';msg.className='l'}
+  else{msg.textContent='📉 الرقم أصغر! ('+l+' متبقية)';msg.className='h'}
+}
+document.getElementById('gi').addEventListener('keydown',e=>{if(e.key==='Enter'){g();}});
+r();
+</script>
+</body>
+</html>  bottom:0;
   left:0;
 }
 </style>
