@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
 <title>سباق التخمين</title>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -10,10 +10,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--gold:#fbbf24;--purple:#8b5cf6;--bg:#0a0a0f;--card:#13131f;--border:rgba(255,255,255,0.08)}
-body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;color:#fff}
-.screen{display:none;min-height:100vh;padding:16px 16px 200px;align-items:center;justify-content:center;flex-direction:column}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+.screen{display:none;flex:1;overflow-y:auto;padding:16px;align-items:center;justify-content:flex-start;flex-direction:column}
 .screen.active{display:flex}
-.logo{font-size:3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+#s-game{display:none;flex-direction:column;overflow:hidden}
+#s-game.active{display:flex}
+.game-scroll{flex:1;overflow-y:auto;padding:14px 16px 8px}
+.hint-row{padding:8px 16px;background:var(--bg)}
+.input-row-wrap{padding:8px 16px;background:var(--bg);border-top:1px solid var(--border)}
+.ad-bar{text-align:center;padding:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-size:1rem;font-weight:900;font-family:'Tajawal',sans-serif;flex-shrink:0}
+.logo{font-size:3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;margin-top:20px}
 .logo-sub{color:rgba(255,255,255,0.4);text-align:center;font-size:.95rem;margin-bottom:24px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;width:100%;max-width:360px;margin-bottom:12px}
 .card h2{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:12px}
@@ -36,11 +42,10 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .host-b{font-size:.7rem;background:var(--gold);color:#000;padding:2px 8px;border-radius:99px;font-weight:900}
 .wdots::after{content:'...';animation:d 1.5s infinite}
 @keyframes d{0%{content:'.'}33%{content:'..'}66%{content:'...'}100%{content:'.'}}
-#s-game{padding:16px 16px 220px;justify-content:flex-start}
-.round-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;width:100%;max-width:400px}
+.round-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .round-b{background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.4);color:var(--purple);padding:6px 14px;border-radius:99px;font-weight:700;font-size:.9rem}
 .timer{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;background:conic-gradient(#22c55e 360deg,rgba(255,255,255,0.1) 0deg)}
-.lb{display:flex;flex-direction:column;gap:6px;width:100%;max-width:400px}
+.lb{display:flex;flex-direction:column;gap:6px}
 .lb-item{display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid var(--border);transition:all .3s}
 .lb-item.me{border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.1)}
 .lb-item.won{border-color:rgba(251,191,36,0.5);background:rgba(251,191,36,0.08)}
@@ -48,23 +53,16 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);min-height:100vh;colo
 .lb-nm{flex:1;font-weight:700;font-size:.9rem}
 .lb-sc{font-weight:900;color:var(--gold);font-size:.9rem}
 .lb-tr{font-size:.7rem;color:rgba(255,255,255,0.35)}
-
-/* الثلاثة ثابتين في الأسفل */
-.ad{width:100%;text-align:center;padding:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-size:1rem;font-weight:900;position:fixed;bottom:0;left:0;z-index:200;font-family:'Tajawal',sans-serif}
-.input-fixed{position:fixed;bottom:44px;left:0;right:0;background:var(--bg);padding:8px 16px;z-index:150;border-top:1px solid var(--border)}
-.hint-fixed{position:fixed;bottom:118px;left:0;right:0;padding:0 16px;z-index:150}
+.hint-box{padding:12px 14px;border-radius:14px;text-align:center;font-size:1rem;font-weight:700;min-height:52px;display:flex;align-items:center;justify-content:center}
+.hh{background:rgba(239,68,68,0.9);color:#fff}
+.hl{background:rgba(59,130,246,0.9);color:#fff}
+.hw{background:rgba(34,197,94,0.9);color:#fff}
+.hd{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)}
+.he{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
+.sub-label{color:rgba(255,255,255,0.35);text-align:center;font-size:.75rem;margin-bottom:5px}
 .inp-row{display:flex;gap:8px}
 .inp-row .inp{margin-bottom:0;font-size:1.3rem;text-align:center;flex:1}
 .inp-row .btn{width:auto;padding:14px 16px}
-.sub-label{color:rgba(255,255,255,0.35);text-align:center;font-size:.75rem;margin-bottom:5px}
-
-.hint-box{padding:10px 14px;border-radius:14px;text-align:center;font-size:1rem;font-weight:700;min-height:44px;display:flex;align-items:center;justify-content:center}
-.hh{background:rgba(239,68,68,0.9);color:#fff}
-.hl{background:rgba(59,130,246,0.9);color:#fff}
-.hw{background:rgba(34,197,94,0.9);color:#fff;font-size:1.1rem}
-.hd{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6)}
-.he{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
-
 .podium{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:16px 0}
 .pod-p{display:flex;flex-direction:column;align-items:center;gap:5px}
 .pod-b{border-radius:12px 12px 0 0;width:85px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-size:1.7rem}
@@ -102,10 +100,14 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 </div>
 
 <div class="screen" id="s-wait">
-  <div style="text-align:center"><div style="color:rgba(255,255,255,0.45);font-size:.9rem">شارك الرقم مع أصحابك</div>
-    <div class="room-code" id="showCode">----</div></div>
-  <div class="card" style="width:100%;max-width:360px"><h2>👥 اللاعبون <span id="pCount" style="color:var(--gold)">0/4</span></h2>
-    <div class="players-list" id="pList"></div></div>
+  <div style="text-align:center;margin-top:20px">
+    <div style="color:rgba(255,255,255,0.45);font-size:.9rem">شارك الرقم مع أصحابك</div>
+    <div class="room-code" id="showCode">----</div>
+  </div>
+  <div class="card" style="width:100%;max-width:360px">
+    <h2>👥 اللاعبون <span id="pCount" style="color:var(--gold)">0/4</span></h2>
+    <div class="players-list" id="pList"></div>
+  </div>
   <div style="width:100%;max-width:360px">
     <div id="hostCtrl" style="display:none">
       <button class="btn btn-gold" onclick="startGame()" id="startBtn" disabled>ابدأ اللعبة 🚀</button>
@@ -115,38 +117,39 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
   </div>
 </div>
 
-<div class="screen" id="s-game">
-  <div class="round-bar">
-    <div class="round-b" id="roundLabel">الجولة 1/3</div>
-    <div class="timer" id="timerEl">--</div>
+<div id="s-game">
+  <div class="game-scroll">
+    <div class="round-bar">
+      <div class="round-b" id="roundLabel">الجولة 1/3</div>
+      <div class="timer" id="timerEl">--</div>
+    </div>
+    <div class="lb" id="lb"></div>
   </div>
-  <div class="lb" id="lb"></div>
-</div>
-
-<!-- ثابتين دائماً -->
-<div class="hint-fixed" id="hintFixed">
-  <div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div>
-</div>
-<div class="input-fixed" id="inputFixed">
-  <div class="sub-label">خمّن رقماً من 1 إلى 100</div>
-  <div class="inp-row">
-    <input class="inp" type="number" id="gInput" placeholder="؟" min="1" max="100" inputmode="numeric">
-    <button class="btn btn-primary" onclick="submitGuess()" style="width:auto;padding:14px 16px">🚀</button>
+  <div class="hint-row">
+    <div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div>
   </div>
+  <div class="input-row-wrap">
+    <div class="sub-label">خمّن رقماً من 1 إلى 100</div>
+    <div class="inp-row">
+      <input class="inp" type="number" id="gInput" placeholder="؟" min="1" max="100" inputmode="numeric">
+      <button class="btn btn-primary" onclick="submitGuess()" style="width:auto;padding:14px 16px">🚀</button>
+    </div>
+  </div>
+  <div class="ad-bar">☕ استراحة بوصالح</div>
 </div>
 
 <div class="screen" id="s-results">
-  <div style="font-size:1.7rem;font-weight:900;text-align:center;margin-bottom:4px">🏆 النتائج النهائية</div>
+  <div style="font-size:1.7rem;font-weight:900;text-align:center;margin-bottom:4px;margin-top:20px">🏆 النتائج النهائية</div>
   <div style="color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px;font-size:.85rem">بعد 3 جولات</div>
   <div class="podium" id="podium"></div>
   <div class="fl" id="fl"></div>
-  <div style="width:100%;max-width:360px">
+  <div style="width:100%;max-width:360px;padding-bottom:20px">
     <button class="btn btn-gold" onclick="playAgain()">🔄 جولة جديدة</button>
     <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
   </div>
 </div>
 
-<div class="ad">☕ استراحة بوصالح</div>
+<div class="ad-bar" id="adOther">☕ استراحة بوصالح</div>
 
 <script>
 firebase.initializeApp({
@@ -165,23 +168,34 @@ const MD=['🥇','🥈','🥉','4️⃣'];
 let myId=Date.now().toString(36)+Math.random().toString(36).substr(2);
 let myName='',roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
 
-function ss(msg,t='i',ms=3000){const b=document.getElementById('sb');b.textContent=msg;b.className=`sb show s${t}`;setTimeout(()=>b.classList.remove('show'),ms);}
+function ss(msg,t='i',ms=3000){
+  const b=document.getElementById('sb');
+  b.textContent=msg;b.className=`sb show s${t}`;
+  setTimeout(()=>b.classList.remove('show'),ms);
+}
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const isGame=id==='s-game';
-  document.getElementById('hintFixed').style.display=isGame?'block':'none';
-  document.getElementById('inputFixed').style.display=isGame?'block':'none';
+  document.getElementById('s-game').classList.remove('active');
+  if(id==='s-game'){
+    document.getElementById('s-game').classList.add('active');
+    document.getElementById('adOther').style.display='none';
+  }else{
+    document.getElementById(id).classList.add('active');
+    document.getElementById('adOther').style.display='block';
+  }
 }
 
 async function createRoom(){
   myName=document.getElementById('myName').value.trim();
   if(!myName){ss('أدخل اسمك!','e');return;}
-  roomCode=Math.floor(1000+Math.random()*9000).toString();isHost=true;
+  roomCode=Math.floor(1000+Math.random()*9000).toString();
+  isHost=true;
   try{
-    await db.ref(`rooms/${roomCode}`).set({host:myId,status:'waiting',round:0,totalRounds:3,secret:0,
-      players:{[myId]:{name:myName,score:0,color:CL[0],emoji:EM[0],isHost:true,tries:0}}});
+    await db.ref(`rooms/${roomCode}`).set({
+      host:myId,status:'waiting',round:0,totalRounds:3,secret:0,
+      players:{[myId]:{name:myName,score:0,color:CL[0],emoji:EM[0],isHost:true,tries:0}}
+    });
     document.getElementById('showCode').textContent=roomCode;
     document.getElementById('hostCtrl').style.display='block';
     document.getElementById('guestCtrl').style.display='none';
@@ -203,7 +217,9 @@ async function joinRoom(){
     const cnt=Object.keys(room.players||{}).length;
     if(cnt>=4){ss('الغرفة ممتلئة!','e');return;}
     isHost=false;
-    await db.ref(`rooms/${roomCode}/players/${myId}`).set({name:myName,score:0,color:CL[cnt],emoji:EM[cnt],isHost:false,tries:0});
+    await db.ref(`rooms/${roomCode}/players/${myId}`).set({
+      name:myName,score:0,color:CL[cnt],emoji:EM[cnt],isHost:false,tries:0
+    });
     document.getElementById('showCode').textContent=roomCode;
     document.getElementById('hostCtrl').style.display='none';
     document.getElementById('guestCtrl').style.display='block';
@@ -226,11 +242,15 @@ function listenRoom(){
 }
 
 function updateWait(d){
-  const ps=d.players||{};const cnt=Object.keys(ps).length;
+  const ps=d.players||{};
+  const cnt=Object.keys(ps).length;
   document.getElementById('pCount').textContent=`${cnt}/4`;
   document.getElementById('pList').innerHTML=Object.entries(ps).map(([id,p])=>`
-    <div class="player-item"><div class="p-av" style="background:${p.color}22;color:${p.color}">${p.emoji}</div>
-    <div class="p-nm">${p.name}${id===myId?' (أنت)':''}</div>${p.isHost?'<span class="host-b">👑</span>':''}</div>`).join('');
+    <div class="player-item">
+      <div class="p-av" style="background:${p.color}22;color:${p.color}">${p.emoji}</div>
+      <div class="p-nm">${p.name}${id===myId?' (أنت)':''}</div>
+      ${p.isHost?'<span class="host-b">👑</span>':''}
+    </div>`).join('');
   if(isHost)document.getElementById('startBtn').disabled=cnt<2;
 }
 
@@ -238,37 +258,51 @@ async function startGame(){await startRound(1);}
 
 async function startRound(n){
   const secret=Math.floor(Math.random()*100)+1;
-  const ps=gData.players||{};const upd={};
-  Object.keys(ps).forEach(id=>{upd[`rooms/${roomCode}/players/${id}/tries`]=0;upd[`rooms/${roomCode}/players/${id}/done`]=false;});
-  upd[`rooms/${roomCode}/status`]='playing';upd[`rooms/${roomCode}/round`]=n;
-  upd[`rooms/${roomCode}/secret`]=secret;upd[`rooms/${roomCode}/winner`]=null;upd[`rooms/${roomCode}/startTime`]=Date.now();
+  const ps=gData.players||{};
+  const upd={};
+  Object.keys(ps).forEach(id=>{
+    upd[`rooms/${roomCode}/players/${id}/tries`]=0;
+    upd[`rooms/${roomCode}/players/${id}/done`]=false;
+  });
+  upd[`rooms/${roomCode}/status`]='playing';
+  upd[`rooms/${roomCode}/round`]=n;
+  upd[`rooms/${roomCode}/secret`]=secret;
+  upd[`rooms/${roomCode}/winner`]=null;
+  upd[`rooms/${roomCode}/startTime`]=Date.now();
   await db.ref().update(upd);
 }
 
 function onPlaying(d){
-  const isNewRound = d.round !== currentRound;
+  const isNewRound=d.round!==currentRound;
   if(isNewRound){
     currentRound=d.round;
-    show('s-game');canGuess=true;
+    show('s-game');
+    canGuess=true;
     document.getElementById('roundLabel').textContent=`الجولة ${d.round}/${d.totalRounds}`;
-    // امسح الخانة والنتيجة بس لما تبدأ جولة جديدة
     document.getElementById('gInput').value='';
     document.getElementById('gInput').disabled=false;
     const h=document.getElementById('hintEl');
-    h.textContent='اكتب تخمينك ⬇️';h.className='hint-box he';
+    h.textContent='اكتب تخمينك ⬇️';
+    h.className='hint-box he';
     runTimer(d.startTime);
   }
   updateLB(d);
 }
 
 function runTimer(st){
-  clearInterval(timerInt);const dur=60;const el=document.getElementById('timerEl');
+  clearInterval(timerInt);
+  const dur=60;
+  const el=document.getElementById('timerEl');
   timerInt=setInterval(async()=>{
     const left=Math.max(0,dur-Math.floor((Date.now()-st)/1000));
-    const pct=(left/dur)*360;const c=left>20?'#22c55e':left>10?'#f59e0b':'#ef4444';
+    const pct=(left/dur)*360;
+    const c=left>20?'#22c55e':left>10?'#f59e0b':'#ef4444';
     el.style.background=`conic-gradient(${c} ${pct}deg,rgba(255,255,255,0.1) ${pct}deg)`;
     el.textContent=left;
-    if(left===0){clearInterval(timerInt);if(isHost)await db.ref(`rooms/${roomCode}/status`).set('round_end');}
+    if(left===0){
+      clearInterval(timerInt);
+      if(isHost)await db.ref(`rooms/${roomCode}/status`).set('round_end');
+    }
   },500);
 }
 
@@ -297,7 +331,8 @@ async function submitGuess(){
   if(v===secret){
     canGuess=false;clearInterval(timerInt);
     const pts=Math.max(10,100-(tries-1)*10);
-    hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;hint.className='hint-box hw';
+    hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;
+    hint.className='hint-box hw';
     const newScore=(gData.players[myId]?.score||0)+pts;
     await db.ref().update({
       [`rooms/${roomCode}/players/${myId}/score`]:newScore,
@@ -306,9 +341,11 @@ async function submitGuess(){
       [`rooms/${roomCode}/status`]:'round_end'
     });
   }else if(v<secret){
-    hint.textContent=`📈 الرقم أكبر! محاولة ${tries}`;hint.className='hint-box hl';
+    hint.textContent=`📈 الرقم أكبر! محاولة ${tries}`;
+    hint.className='hint-box hl';
   }else{
-    hint.textContent=`📉 الرقم أصغر! محاولة ${tries}`;hint.className='hint-box hh';
+    hint.textContent=`📉 الرقم أصغر! محاولة ${tries}`;
+    hint.className='hint-box hh';
   }
 }
 
@@ -320,7 +357,8 @@ function onRoundEnd(d){
   else if(!d.winner)ss(`⏰ انتهى الوقت! الرقم كان ${d.secret}`,'i',3500);
   if(d.winner!==myId){
     const h=document.getElementById('hintEl');
-    h.textContent=`الرقم كان ${d.secret}`;h.className='hint-box hd';
+    h.textContent=`الرقم كان ${d.secret}`;
+    h.className='hint-box hd';
   }
   if(isHost)setTimeout(async()=>{
     if(d.round<d.totalRounds)await startRound(d.round+1);
@@ -350,32 +388,34 @@ async function playAgain(){
   if(!isHost){ss('فقط صاحب الغرفة يقدر يبدأ','i');return;}
   const ps=gData.players||{};const upd={};
   Object.keys(ps).forEach(id=>{upd[`rooms/${roomCode}/players/${id}/score`]=0;});
-  upd[`rooms/${roomCode}/status`]='waiting';upd[`rooms/${roomCode}/round`]=0;
+  upd[`rooms/${roomCode}/status`]='waiting';
+  upd[`rooms/${roomCode}/round`]=0;
   currentRound=0;
   await db.ref().update(upd);show('s-wait');
 }
 
-function goHome(){roomRef?.off();clearInterval(timerInt);currentRound=0;show('s-lobby');}
+function goHome(){
+  roomRef?.off();clearInterval(timerInt);currentRound=0;show('s-lobby');
+}
 
 function confetti(){
   const cv=document.getElementById('cv');const ctx=cv.getContext('2d');
   cv.width=window.innerWidth;cv.height=window.innerHeight;
-  const ps=Array.from({length:70},()=>({x:Math.random()*cv.width,y:-10,
-    w:Math.random()*10+4,h:Math.random()*5+3,c:CL[Math.floor(Math.random()*CL.length)],
-    spd:Math.random()*3+2,ang:Math.random()*360,spin:Math.random()*5-2.5}));
-  let f=0;const go=()=>{
+  const ps=Array.from({length:70},()=>({
+    x:Math.random()*cv.width,y:-10,w:Math.random()*10+4,h:Math.random()*5+3,
+    c:CL[Math.floor(Math.random()*CL.length)],spd:Math.random()*3+2,ang:Math.random()*360,spin:Math.random()*5-2.5
+  }));
+  let f=0;
+  const go=()=>{
     if(f++>180){ctx.clearRect(0,0,cv.width,cv.height);return;}
     ctx.clearRect(0,0,cv.width,cv.height);
     ps.forEach(p=>{p.y+=p.spd;p.ang+=p.spin;ctx.save();ctx.translate(p.x,p.y);
       ctx.rotate(p.ang*Math.PI/180);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
-    requestAnimationFrame(go);};go();
+    requestAnimationFrame(go);
+  };go();
 }
-
-// إخفاء خانة الإدخال في البداية
-document.getElementById('hintFixed').style.display='none';
-document.getElementById('inputFixed').style.display='none';
 
 document.getElementById('gInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitGuess();});
 </script>
 </body>
-</html>
+  </html>
