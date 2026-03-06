@@ -68,20 +68,19 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .he{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
 
 /* CUSTOM KEYBOARD */
-.kb-wrap{flex-shrink:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 12px 12px}
-.kb-display{background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.15);border-radius:14px;padding:12px 16px;text-align:center;font-size:2rem;font-weight:900;color:#fff;margin-bottom:10px;min-height:58px;letter-spacing:4px}
-.kb-display.empty{color:rgba(255,255,255,0.2);font-size:1.1rem;font-weight:400;letter-spacing:0;padding-top:17px}
-.kb-range{font-size:.8rem;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:8px;font-weight:700}
+.kb-wrap{flex-shrink:0;background:var(--bg);border-top:1px solid var(--border);padding:8px 10px 10px}
+.kb-display{background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.15);border-radius:12px;padding:9px 16px;text-align:center;font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:8px;min-height:48px;letter-spacing:4px}
+.kb-display.empty{color:rgba(255,255,255,0.2);font-size:.95rem;font-weight:400;letter-spacing:0;padding-top:13px}
+.kb-range{font-size:.78rem;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:6px;font-weight:700}
 .kb-range span{color:#fff;font-weight:900}
-.kb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kb-btn{padding:16px 0;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1.5rem;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.08);color:#fff;transition:all .15s;user-select:none}
-.kb-btn:active{transform:scale(0.93);background:rgba(255,255,255,0.18)}
+.kb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;direction:ltr}
+.kb-btn{padding:12px 0;border:none;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.08);color:#fff;transition:all .15s;user-select:none}
+.kb-btn:active{transform:scale(0.92);background:rgba(255,255,255,0.18)}
 .kb-del{background:rgba(239,68,68,0.15);color:#fca5a5}
 .kb-del:active{background:rgba(239,68,68,0.3)}
-.kb-send{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-size:1.1rem}
+.kb-send{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-size:1rem}
 .kb-send:active{background:linear-gradient(135deg,#6d28d9,#4338ca)}
-.kb-send:disabled{opacity:0.3;cursor:not-allowed}
-.kb-zero{grid-column:span 1}
+.kb-send:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 
 /* solo header */
 .solo-header{padding:12px 16px 0;flex-shrink:0}
@@ -108,7 +107,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .diff-insane{background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);color:#d8b4fe}
 .ready-btn{width:100%;max-width:280px;padding:18px;border:none;border-radius:18px;font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;box-shadow:0 0 30px rgba(34,197,94,0.3)}
 
-/* time over banner */
+/* time over */
 .time-over-bar{display:none;background:rgba(239,68,68,0.95);padding:12px 16px;text-align:center;flex-shrink:0}
 .time-over-bar.show{display:block}
 .time-over-btn{background:#fff;color:#dc2626;border:none;border-radius:10px;padding:10px 24px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;margin-top:6px;width:100%}
@@ -264,7 +263,6 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     <div class="lb" id="lb"></div>
   </div>
   <div class="hint-row"><div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div></div>
-  <!-- multi keyboard -->
   <div class="kb-wrap" id="multiKb">
     <div class="kb-range">خمّن من <span>1</span> إلى <span>100</span></div>
     <div class="kb-display empty" id="multiDisplay">اكتب رقمك...</div>
@@ -279,8 +277,8 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
       <button class="kb-btn" onclick="kbPress('multi','8')">8</button>
       <button class="kb-btn" onclick="kbPress('multi','9')">9</button>
       <button class="kb-btn kb-del" onclick="kbDel('multi')">⌫</button>
-      <button class="kb-btn kb-zero" onclick="kbPress('multi','0')">0</button>
-      <button class="kb-btn kb-send" id="multiSendBtn" onclick="submitGuess()">إرسال</button>
+      <button class="kb-btn" onclick="kbPress('multi','0')">0</button>
+      <button class="kb-btn kb-send" id="multiSendBtn" onclick="submitGuess()" disabled>إرسال</button>
     </div>
   </div>
   <div class="ad-bar">☕ استراحة بوصالح</div>
@@ -302,7 +300,6 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 
 <!-- SOLO GAME -->
 <div id="s-solo">
-  <!-- انتهاء الوقت — يظهر في الأعلى -->
   <div class="time-over-bar" id="timeOverBar">
     <div style="font-size:1rem;font-weight:900">⏰ انتهى الوقت! الرقم كان <span id="secretReveal">--</span></div>
     <button class="time-over-btn" onclick="soloGameOver()">شوف نتيجتك 📊</button>
@@ -320,7 +317,6 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     </div>
   </div>
   <div class="hint-row"><div class="hint-box he" id="soloHint">اكتب تخمينك ⬇️</div></div>
-  <!-- solo keyboard -->
   <div class="kb-wrap" id="soloKb">
     <div class="kb-range">خمّن من <span>1</span> إلى <span id="soloMaxDisplay">10</span></div>
     <div class="kb-display empty" id="soloDisplay">اكتب رقمك...</div>
@@ -335,8 +331,8 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
       <button class="kb-btn" onclick="kbPress('solo','8')">8</button>
       <button class="kb-btn" onclick="kbPress('solo','9')">9</button>
       <button class="kb-btn kb-del" onclick="kbDel('solo')">⌫</button>
-      <button class="kb-btn kb-zero" onclick="kbPress('solo','0')">0</button>
-      <button class="kb-btn kb-send" id="soloSendBtn" onclick="soloGuess()">إرسال</button>
+      <button class="kb-btn" onclick="kbPress('solo','0')">0</button>
+      <button class="kb-btn kb-send" id="soloSendBtn" onclick="soloGuess()" disabled>إرسال</button>
     </div>
   </div>
   <div class="ad-bar">☕ استراحة بوصالح</div>
@@ -422,8 +418,6 @@ const LEVELS=[
 let myName='',myUserId='',isGuest=false;
 let roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
 let soloLevel=0,soloSecret=0,soloTries=0,soloScore=0,soloTimerInt=null;
-
-// كيبورد مدمج
 let kbVal={solo:'',multi:''};
 
 function kbPress(mode,num){
@@ -437,21 +431,32 @@ function kbDel(mode){
 }
 function updateKbDisplay(mode){
   const el=document.getElementById(mode==='solo'?'soloDisplay':'multiDisplay');
-  const sendBtn=document.getElementById(mode==='solo'?'soloSendBtn':'multiSendBtn');
+  const btn=document.getElementById(mode==='solo'?'soloSendBtn':'multiSendBtn');
   if(kbVal[mode]===''){
     el.textContent='اكتب رقمك...';
     el.classList.add('empty');
-    sendBtn.disabled=true;
+    btn.disabled=true;
   }else{
     el.textContent=kbVal[mode];
     el.classList.remove('empty');
-    sendBtn.disabled=false;
+    btn.disabled=false;
   }
 }
 
-// init disabled
-document.getElementById('soloSendBtn').disabled=true;
-document.getElementById('multiSendBtn').disabled=true;
+function lockKb(mode){
+  const kb=document.getElementById(mode==='solo'?'soloKb':'multiKb');
+  kb.style.opacity='0.3';
+  kb.style.pointerEvents='none';
+  kbVal[mode]='';
+  updateKbDisplay(mode);
+}
+function unlockKb(mode){
+  const kb=document.getElementById(mode==='solo'?'soloKb':'multiKb');
+  kb.style.opacity='1';
+  kb.style.pointerEvents='auto';
+  kbVal[mode]='';
+  updateKbDisplay(mode);
+}
 
 function ss(msg,t='i',ms=3000){
   const b=document.getElementById('sb');
@@ -494,11 +499,11 @@ async function register(){
   try{
     const snap=await db.ref(`users/${u}`).get();
     if(snap.exists()){err.textContent='هذا الاسم مأخوذ! جرب اسماً آخر';return;}
-    await db.ref(`users/${u}`).set({pass:hashPass(p),phone:hashPass(ph),createdAt:Date.now(),score:0,level:0});
+    await db.ref(`users/${u}`).set({pass:hashPass(p),phone:hashPass(ph),createdAt:Date.now()});
     myName=u;myUserId=u;isGuest=false;
     localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
     enterLobby();ss('تم إنشاء الحساب! 🎉','o');
-  }catch(e){err.textContent='خطأ في الاتصال: '+e.message;}
+  }catch(e){err.textContent='خطأ: '+e.message;}
 }
 
 async function login(){
@@ -514,7 +519,7 @@ async function login(){
     myName=u;myUserId=u;isGuest=false;
     localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
     enterLobby();ss('أهلاً بك! 👋','o');
-  }catch(e){err.textContent='خطأ في الاتصال: '+e.message;}
+  }catch(e){err.textContent='خطأ: '+e.message;}
 }
 
 async function recoverAccount(){
@@ -561,6 +566,7 @@ function goHome(){
   roomRef?.off();currentRound=0;soloLevel=0;soloScore=0;
   document.getElementById('multiOptions').style.display='none';
   document.getElementById('timeOverBar').classList.remove('show');
+  unlockKb('solo');unlockKb('multi');
   show('s-lobby');
 }
 
@@ -612,7 +618,7 @@ async function saveToLeaderboard(level,score){
     }else{
       await ref.set({name:myName,level,score});
     }
-  }catch(e){console.error('leaderboard error:',e);}
+  }catch(e){console.error(e);}
 }
 
 // ===== SOLO =====
@@ -634,8 +640,7 @@ function beginSoloLevel(){
   const lv=LEVELS[soloLevel];
   soloSecret=Math.floor(Math.random()*lv.max)+1;
   soloTries=0;
-  kbVal.solo='';
-  updateKbDisplay('solo');
+  unlockKb('solo');
   document.getElementById('soloMaxDisplay').textContent=lv.max;
   document.getElementById('timeOverBar').classList.remove('show');
   show('s-solo');
@@ -666,10 +671,10 @@ function startSoloTimer(dur){
     left--;upd();
     if(left<=0){
       clearInterval(soloTimerInt);
-      // أظهر شريط انتهاء الوقت في الأعلى
+      // قفل الكيبورد نهائياً
+      lockKb('solo');
       document.getElementById('secretReveal').textContent=soloSecret;
       document.getElementById('timeOverBar').classList.add('show');
-      document.getElementById('soloSendBtn').disabled=true;
     }
   },1000);
 }
@@ -684,6 +689,7 @@ function soloGuess(){
   const hint=document.getElementById('soloHint');
   if(v===soloSecret){
     clearInterval(soloTimerInt);
+    lockKb('solo');
     document.getElementById('timeOverBar').classList.remove('show');
     const pts=Math.max(10,100-(soloTries-1)*15);
     soloScore+=pts;
@@ -803,8 +809,7 @@ function onPlaying(d){
   const isNewRound=d.round!==currentRound;
   if(isNewRound){
     currentRound=d.round;show('s-game');canGuess=true;
-    kbVal.multi='';updateKbDisplay('multi');
-    document.getElementById('multiSendBtn').disabled=true;
+    unlockKb('multi');
     document.getElementById('roundLabel').textContent=`الجولة ${d.round}/${d.totalRounds}`;
     const h=document.getElementById('hintEl');
     h.textContent='اكتب تخمينك ⬇️';h.className='hint-box he';
@@ -847,6 +852,7 @@ async function submitGuess(){
   const hint=document.getElementById('hintEl');
   if(v===secret){
     canGuess=false;clearInterval(timerInt);
+    lockKb('multi');
     const pts=Math.max(10,100-(tries-1)*10);
     hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;hint.className='hint-box hw';
     const newScore=(gData.players[myUserId]?.score||0)+pts;
@@ -864,8 +870,9 @@ async function submitGuess(){
 }
 
 function onRoundEnd(d){
-  clearInterval(timerInt);canGuess=false;updateLB(d);
-  document.getElementById('multiSendBtn').disabled=true;
+  clearInterval(timerInt);canGuess=false;
+  lockKb('multi');
+  updateLB(d);
   const w=d.players[d.winner];
   if(w&&d.winner!==myUserId)ss(`${w.emoji} ${w.name} فاز! الرقم كان ${d.secret}`,'i',3500);
   else if(!d.winner)ss(`⏰ انتهى الوقت! الرقم كان ${d.secret}`,'i',3500);
@@ -926,4 +933,4 @@ window.onload=()=>{
 };
 </script>
 </body>
-</html>
+        </html>
