@@ -21,21 +21,25 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .hint-row{padding:8px 16px;background:var(--bg)}
 .input-row-wrap{padding:8px 16px;background:var(--bg);border-top:1px solid var(--border)}
 .ad-bar{text-align:center;padding:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-size:1rem;font-weight:900;font-family:'Tajawal',sans-serif;flex-shrink:0}
-.logo{font-size:3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;margin-top:20px}
-.logo-sub{color:rgba(255,255,255,0.4);text-align:center;font-size:.95rem;margin-bottom:24px}
+.logo{font-size:3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;margin-top:16px}
+.logo-sub{color:rgba(255,255,255,0.4);text-align:center;font-size:.95rem;margin-bottom:16px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px;width:100%;max-width:360px;margin-bottom:12px}
 .card h2{font-size:.95rem;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:12px}
-.inp{width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:12px;color:#fff;font-family:'Tajawal',sans-serif;font-size:1rem;outline:none;margin-bottom:10px;transition:border .2s}
+.inp{width:100%;padding:13px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:12px;color:#fff;font-family:'Tajawal',sans-serif;font-size:1rem;outline:none;margin-bottom:10px;transition:border .2s}
 .inp:focus{border-color:var(--purple)}
 .inp::placeholder{color:rgba(255,255,255,0.25)}
-.btn{width:100%;padding:14px;border:none;border-radius:14px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn{width:100%;padding:13px;border:none;border-radius:14px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:0}
 .btn:active{transform:scale(0.97)}
 .btn-primary{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff}
-.btn-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid var(--border);margin-top:8px}
+.btn-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid var(--border)}
 .btn-gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
-.btn-green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;margin-top:8px}
+.btn-green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.btn-red{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
+.btn-lb{background:linear-gradient(135deg,#6366f1,#4338ca);color:#fff}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);font-size:.9rem}
 .btn:disabled{opacity:0.4;cursor:not-allowed}
-.divider{display:flex;align-items:center;gap:12px;margin:2px 0 12px;color:rgba(255,255,255,0.2);font-size:.85rem;width:100%;max-width:360px}
+.mt8{margin-top:8px}
+.divider{display:flex;align-items:center;gap:12px;margin:8px 0;color:rgba(255,255,255,0.2);font-size:.85rem;width:100%;max-width:360px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 .room-code{font-size:3.2rem;font-weight:900;text-align:center;letter-spacing:8px;color:var(--gold);margin:10px 0}
 .players-list{display:flex;flex-direction:column;gap:8px;margin:10px 0}
@@ -66,25 +70,40 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .inp-row{display:flex;gap:8px}
 .inp-row .inp{margin-bottom:0;font-size:1.3rem;text-align:center;flex:1}
 .inp-row .btn{width:auto;padding:14px 16px}
-
-/* SOLO */
 .solo-header{padding:14px 16px 0;flex-shrink:0}
-.level-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;padding:6px 16px;border-radius:99px;font-weight:900;font-size:.95rem;display:inline-block;margin-bottom:8px}
-.level-info{color:rgba(255,255,255,0.5);font-size:.85rem;margin-bottom:4px}
-.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-bottom:4px}
+.level-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;padding:6px 16px;border-radius:99px;font-weight:900;font-size:.9rem;display:inline-block;margin-bottom:6px}
+.level-info{color:rgba(255,255,255,0.5);font-size:.82rem;margin-bottom:4px}
+.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-bottom:8px}
 .progress-fill{height:100%;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:99px;transition:width .5s}
-.solo-stats{display:flex;gap:12px;margin-bottom:8px}
-.stat-box{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center}
-.stat-num{font-size:1.4rem;font-weight:900;color:var(--gold)}
-.stat-lbl{font-size:.72rem;color:rgba(255,255,255,0.4)}
-
-/* SOLO RESULTS */
-.level-complete{text-align:center;padding:20px}
+.solo-stats{display:flex;gap:8px;margin-bottom:8px}
+.stat-box{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:8px;text-align:center}
+.stat-num{font-size:1.3rem;font-weight:900;color:var(--gold)}
+.stat-lbl{font-size:.68rem;color:rgba(255,255,255,0.4)}
+.level-complete{text-align:center;padding:20px;width:100%;max-width:360px}
 .lc-emoji{font-size:4rem;margin-bottom:8px}
 .lc-title{font-size:1.5rem;font-weight:900;margin-bottom:4px}
-.lc-sub{color:rgba(255,255,255,0.5);font-size:.9rem;margin-bottom:20px}
-.stars{font-size:2.5rem;margin-bottom:16px}
-
+.lc-sub{color:rgba(255,255,255,0.5);font-size:.9rem;margin-bottom:16px}
+.stars{font-size:2.5rem;margin-bottom:12px}
+.user-badge{display:flex;align-items:center;gap:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:14px;padding:10px 14px;margin-bottom:12px;width:100%;max-width:360px}
+.user-badge-info{flex:1}
+.user-badge-name{font-weight:900;font-size:1rem}
+.user-badge-tag{font-size:.75rem;color:rgba(139,92,246,0.8)}
+.lb-global{display:flex;flex-direction:column;gap:8px;width:100%;max-width:360px;margin-bottom:16px}
+.lb-global-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:16px}
+.lb-global-item.top1{border-color:rgba(251,191,36,0.5);background:rgba(251,191,36,0.06)}
+.lb-global-item.top2{border-color:rgba(156,163,175,0.4);background:rgba(156,163,175,0.04)}
+.lb-global-item.top3{border-color:rgba(180,83,9,0.4);background:rgba(180,83,9,0.04)}
+.lb-global-item.mine{border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.06)}
+.lb-rank-num{font-size:1.3rem;width:30px;text-align:center;flex-shrink:0}
+.lb-user-info{flex:1}
+.lb-user-name{font-weight:700;font-size:.95rem}
+.lb-user-level{font-size:.72rem;color:rgba(255,255,255,0.4)}
+.lb-user-pts{font-weight:900;color:var(--gold);font-size:1rem}
+.lb-user-lbl{font-size:.68rem;color:rgba(255,255,255,0.35)}
+.tab-row{display:flex;gap:8px;width:100%;max-width:360px;margin-bottom:16px}
+.tab{flex:1;padding:10px;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);transition:all .2s}
+.tab.active{background:var(--purple);color:#fff}
+.err-msg{color:#fca5a5;font-size:.82rem;text-align:center;margin-top:-6px;margin-bottom:8px;min-height:18px}
 .podium{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:16px 0}
 .pod-p{display:flex;flex-direction:column;align-items:center;gap:5px}
 .pod-b{border-radius:12px 12px 0 0;width:85px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-size:1.7rem}
@@ -97,7 +116,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .fi{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;margin-bottom:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03)}
 .fi.f1{background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.3)}
 .fi.f2{background:rgba(156,163,175,0.06);border-color:rgba(156,163,175,0.2)}
-.fi.f3{background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.2)}
+.fi.f3{background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.3)}
 .sb{position:fixed;top:0;left:0;right:0;padding:10px;text-align:center;font-weight:700;font-size:.9rem;z-index:999;transform:translateY(-100%);transition:transform .3s;font-family:'Tajawal',sans-serif}
 .sb.show{transform:translateY(0)}
 .si{background:rgba(59,130,246,0.92)}
@@ -110,32 +129,90 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 <div class="sb" id="sb"></div>
 <canvas id="cv"></canvas>
 
-<!-- LOBBY -->
-<div class="screen active" id="s-lobby">
+<!-- AUTH SCREEN -->
+<div class="screen active" id="s-auth">
   <div class="logo">🏁 سباق</div>
   <div class="logo-sub">لعبة تخمين الأرقام</div>
-  <div class="card">
-    <h2>👤 اسمك في اللعبة</h2>
-    <input class="inp" id="myName" placeholder="مثال: عبدالعزيز" maxlength="10">
+
+  <div class="tab-row">
+    <button class="tab active" onclick="switchTab('login')">تسجيل الدخول</button>
+    <button class="tab" onclick="switchTab('register')">حساب جديد</button>
+    <button class="tab" onclick="switchTab('recover')">استرجاع</button>
   </div>
-  <div class="card">
+
+  <!-- LOGIN -->
+  <div id="tab-login" class="card" style="width:100%;max-width:360px">
+    <h2>🔑 تسجيل الدخول</h2>
+    <input class="inp" id="loginUser" placeholder="اسم المستخدم">
+    <input class="inp" id="loginPass" type="password" placeholder="كلمة السر">
+    <div class="err-msg" id="loginErr"></div>
+    <button class="btn btn-primary" onclick="login()">دخول ▶</button>
+    <button class="btn btn-ghost mt8" onclick="playAsGuest()">العب كضيف بدون حساب 👤</button>
+  </div>
+
+  <!-- REGISTER -->
+  <div id="tab-register" class="card" style="width:100%;max-width:360px;display:none">
+    <h2>✨ حساب جديد</h2>
+    <input class="inp" id="regUser" placeholder="اسم المستخدم (فريد)" maxlength="15">
+    <input class="inp" id="regPass" type="password" placeholder="كلمة السر">
+    <input class="inp" id="regPhone" type="tel" placeholder="رقم جوالك (للاسترجاع)" inputmode="numeric">
+    <div class="err-msg" id="regErr"></div>
+    <button class="btn btn-green" onclick="register()">إنشاء الحساب ✅</button>
+  </div>
+
+  <!-- RECOVER -->
+  <div id="tab-recover" class="card" style="width:100%;max-width:360px;display:none">
+    <h2>🔓 استرجاع الحساب</h2>
+    <input class="inp" id="recUser" placeholder="اسم المستخدم">
+    <input class="inp" id="recPhone" type="tel" placeholder="رقم جوالك" inputmode="numeric">
+    <input class="inp" id="recNewPass" type="password" placeholder="كلمة السر الجديدة">
+    <div class="err-msg" id="recErr"></div>
+    <button class="btn btn-gold" onclick="recoverAccount()">استرجاع الحساب 🔓</button>
+  </div>
+</div>
+
+<!-- LOBBY -->
+<div class="screen" id="s-lobby">
+  <div class="logo">🏁 سباق</div>
+
+  <div class="user-badge" id="userBadge">
+    <div style="font-size:1.5rem">🦁</div>
+    <div class="user-badge-info">
+      <div class="user-badge-name" id="badgeName">--</div>
+      <div class="user-badge-tag" id="badgeTag">ضيف</div>
+    </div>
+    <button class="btn btn-ghost" onclick="logout()" style="width:auto;padding:6px 12px;font-size:.8rem">خروج</button>
+  </div>
+
+  <div class="card" style="width:100%;max-width:360px">
     <h2>🎮 اختر وضع اللعب</h2>
-    <button class="btn btn-green" onclick="startSolo()">🧍 العب منفرداً — مستويات</button>
-    <div style="color:rgba(255,255,255,0.3);text-align:center;font-size:.78rem;margin:8px 0">أو</div>
-    <button class="btn btn-gold" onclick="showMulti()">👥 العب مع أصحابك</button>
+    <button class="btn btn-green" onclick="startSolo()">🧍 منفرد — مستويات</button>
+    <button class="btn btn-gold mt8" onclick="showMulti()">👥 جماعي مع أصحابك</button>
+    <button class="btn btn-lb mt8" onclick="showLeaderboard()">🏆 قائمة المتصدرين</button>
   </div>
+
   <div id="multiOptions" style="display:none;width:100%;max-width:360px">
     <div class="card">
-      <h2>🏠 إنشاء غرفة جديدة</h2>
+      <h2>🏠 إنشاء غرفة</h2>
       <button class="btn btn-gold" onclick="createRoom()">إنشاء غرفة 🎮</button>
     </div>
     <div class="divider">أو</div>
     <div class="card">
-      <h2>🚪 الانضمام لغرفة</h2>
+      <h2>🚪 انضم لغرفة</h2>
       <input class="inp" id="roomIn" placeholder="رقم الغرفة" maxlength="4" style="text-align:center;font-size:1.5rem;letter-spacing:6px" oninput="this.value=this.value.replace(/\D/g,'')">
       <button class="btn btn-primary" onclick="joinRoom()">انضم ▶</button>
     </div>
   </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="screen" id="s-lb">
+  <div style="font-size:1.7rem;font-weight:900;text-align:center;margin:20px 0 4px">🏆 المتصدرون</div>
+  <div style="color:rgba(255,255,255,0.4);text-align:center;font-size:.85rem;margin-bottom:16px">أعلى مستوى في الوضع الفردي</div>
+  <div class="lb-global" id="lbGlobal">
+    <div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">جاري التحميل...</div>
+  </div>
+  <button class="btn btn-secondary" onclick="goHome()" style="width:100%;max-width:360px;margin-bottom:20px">🏠 رجوع</button>
 </div>
 
 <!-- WAITING -->
@@ -154,8 +231,8 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
       <div style="color:rgba(255,255,255,0.3);text-align:center;font-size:.78rem;margin-top:6px">لاعبان على الأقل للبدء</div>
     </div>
     <div id="guestCtrl" style="display:none;color:rgba(255,255,255,0.4);text-align:center">في انتظار صاحب الغرفة<span class="wdots"></span></div>
+    <button class="btn btn-secondary mt8" onclick="goHome()">🏠 رجوع</button>
   </div>
-  <button class="btn btn-secondary" onclick="goHome()" style="width:100%;max-width:360px;margin-top:8px">🏠 رجوع</button>
 </div>
 
 <!-- MULTI GAME -->
@@ -167,11 +244,9 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     </div>
     <div class="lb" id="lb"></div>
   </div>
-  <div class="hint-row">
-    <div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div>
-  </div>
+  <div class="hint-row"><div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div></div>
   <div class="input-row-wrap">
-    <div class="sub-label" id="rangeLabel">خمّن رقماً من 1 إلى 100</div>
+    <div class="sub-label">خمّن رقماً من 1 إلى 100</div>
     <div class="inp-row">
       <input class="inp" type="number" id="gInput" placeholder="؟" min="1" max="100" inputmode="numeric">
       <button class="btn btn-primary" onclick="submitGuess()" style="width:auto;padding:14px 16px">🚀</button>
@@ -190,27 +265,14 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
       </div>
       <div class="timer" id="soloTimer">--</div>
     </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width:0%"></div>
-    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     <div class="solo-stats">
-      <div class="stat-box">
-        <div class="stat-num" id="soloScore">0</div>
-        <div class="stat-lbl">نقاط</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="soloTries">0</div>
-        <div class="stat-lbl">محاولات</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="soloLevel">1</div>
-        <div class="stat-lbl">مستوى</div>
-      </div>
+      <div class="stat-box"><div class="stat-num" id="soloScore">0</div><div class="stat-lbl">نقاط</div></div>
+      <div class="stat-box"><div class="stat-num" id="soloTries">0</div><div class="stat-lbl">محاولات</div></div>
+      <div class="stat-box"><div class="stat-num" id="soloLevelNum">1</div><div class="stat-lbl">مستوى</div></div>
     </div>
   </div>
-  <div class="hint-row">
-    <div class="hint-box he" id="soloHint">اكتب تخمينك ⬇️</div>
-  </div>
+  <div class="hint-row"><div class="hint-box he" id="soloHint">اكتب تخمينك ⬇️</div></div>
   <div class="input-row-wrap">
     <div class="sub-label" id="soloSubLabel">خمّن رقماً من 1 إلى 10</div>
     <div class="inp-row">
@@ -221,35 +283,36 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
   <div class="ad-bar">☕ استراحة بوصالح</div>
 </div>
 
-<!-- SOLO LEVEL COMPLETE -->
+<!-- SOLO WIN -->
 <div class="screen" id="s-solo-win">
   <div class="level-complete">
     <div class="lc-emoji">🎉</div>
     <div class="lc-title" id="lcTitle">أحسنت!</div>
-    <div class="lc-sub" id="lcSub">اجتزت المستوى 1</div>
+    <div class="lc-sub" id="lcSub"></div>
     <div class="stars" id="lcStars">⭐⭐⭐</div>
-    <div style="font-size:1.1rem;color:var(--gold);font-weight:900;margin-bottom:20px" id="lcPoints">+100 نقطة</div>
+    <div style="font-size:1.1rem;color:var(--gold);font-weight:900;margin-bottom:20px" id="lcPoints"></div>
     <div style="width:100%;max-width:300px">
-      <button class="btn btn-gold" onclick="nextSoloLevel()" id="nextLvlBtn">المستوى التالي ▶</button>
-      <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
+      <button class="btn btn-gold" id="nextLvlBtn" onclick="nextSoloLevel()">المستوى التالي ▶</button>
+      <button class="btn btn-secondary mt8" onclick="goHome()">🏠 الرئيسية</button>
     </div>
   </div>
   <div class="ad-bar" style="position:fixed;bottom:0;left:0;right:0">☕ استراحة بوصالح</div>
 </div>
 
-<!-- SOLO GAME OVER -->
+<!-- SOLO OVER -->
 <div class="screen" id="s-solo-over">
   <div class="level-complete">
     <div class="lc-emoji">⏰</div>
     <div class="lc-title">انتهى الوقت!</div>
-    <div class="lc-sub" id="overSub">وصلت للمستوى 3</div>
+    <div class="lc-sub" id="overSub"></div>
     <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin:16px 0;width:100%;max-width:300px">
-      <div style="font-size:2rem;font-weight:900;color:var(--gold);text-align:center" id="overScore">250</div>
+      <div style="font-size:2rem;font-weight:900;color:var(--gold);text-align:center" id="overScore">0</div>
       <div style="color:rgba(255,255,255,0.4);text-align:center;font-size:.9rem">مجموع نقاطك</div>
     </div>
     <div style="width:100%;max-width:300px">
       <button class="btn btn-gold" onclick="startSolo()">🔄 حاول مجدداً</button>
-      <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
+      <button class="btn btn-lb mt8" onclick="showLeaderboard()">🏆 المتصدرون</button>
+      <button class="btn btn-secondary mt8" onclick="goHome()">🏠 الرئيسية</button>
     </div>
   </div>
   <div class="ad-bar" style="position:fixed;bottom:0;left:0;right:0">☕ استراحة بوصالح</div>
@@ -263,7 +326,7 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
   <div class="fl" id="fl"></div>
   <div style="width:100%;max-width:360px;padding-bottom:20px">
     <button class="btn btn-gold" onclick="playAgain()">🔄 جولة جديدة</button>
-    <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
+    <button class="btn btn-secondary mt8" onclick="goHome()">🏠 الرئيسية</button>
   </div>
 </div>
 
@@ -283,8 +346,7 @@ const db=firebase.database();
 const CL=['#f59e0b','#3b82f6','#22c55e','#ef4444'];
 const EM=['🦁','🐯','🦊','🐺'];
 const MD=['🥇','🥈','🥉','4️⃣'];
-
-// مستويات اللعب الفردي
+const RANKS=['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
 const LEVELS=[
   {num:1,max:10,time:30,label:'مبتدئ'},
   {num:2,max:20,time:28,label:'سهل'},
@@ -298,12 +360,11 @@ const LEVELS=[
   {num:10,max:1000,time:8,label:'الله يعينك 😅'},
 ];
 
-let myId=Date.now().toString(36)+Math.random().toString(36).substr(2);
-let myName='',roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
-
-// Solo state
+let myName='',myUserId='',isGuest=false;
+let roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
 let soloLevel=0,soloSecret=0,soloTries=0,soloScore=0,soloTimerInt=null;
 
+// ===== UTILS =====
 function ss(msg,t='i',ms=3000){
   const b=document.getElementById('sb');
   b.textContent=msg;b.className=`sb show s${t}`;
@@ -313,15 +374,112 @@ function ss(msg,t='i',ms=3000){
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   ['s-game','s-solo'].forEach(x=>document.getElementById(x).classList.remove('active'));
-  const gameScreens=['s-game','s-solo'];
-  if(gameScreens.includes(id)){
+  if(id==='s-game'||id==='s-solo'){
     document.getElementById(id).classList.add('active');
     document.getElementById('adOther').style.display='none';
   }else{
     document.getElementById(id).classList.add('active');
     document.getElementById('adOther').style.display=
-      ['s-solo-win','s-solo-over'].includes(id)?'none':'block';
+      ['s-solo-win','s-solo-over','s-lb'].includes(id)?'none':'block';
   }
+}
+
+function switchTab(t){
+  ['login','register','recover'].forEach(x=>{
+    document.getElementById(`tab-${x}`).style.display=x===t?'block':'none';
+    document.querySelectorAll('.tab')[['login','register','recover'].indexOf(x)].classList.toggle('active',x===t);
+  });
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('regErr').textContent='';
+  document.getElementById('recErr').textContent='';
+}
+
+function hashPass(p){
+  let h=0;for(let i=0;i<p.length;i++){h=((h<<5)-h)+p.charCodeAt(i);h|=0;}return Math.abs(h).toString(36);
+}
+
+// ===== AUTH =====
+async function register(){
+  const u=document.getElementById('regUser').value.trim().toLowerCase();
+  const p=document.getElementById('regPass').value;
+  const ph=document.getElementById('regPhone').value.trim();
+  const err=document.getElementById('regErr');
+  if(u.length<3){err.textContent='الاسم 3 أحرف على الأقل';return;}
+  if(p.length<4){err.textContent='كلمة السر 4 أحرف على الأقل';return;}
+  if(ph.length<9){err.textContent='أدخل رقم جوال صحيح';return;}
+  err.textContent='جاري التحقق...';
+  try{
+    const snap=await db.ref(`users/${u}`).get();
+    if(snap.exists()){err.textContent='هذا الاسم مأخوذ! جرب اسماً آخر';return;}
+    await db.ref(`users/${u}`).set({pass:hashPass(p),phone:hashPass(ph),createdAt:Date.now()});
+    myName=u;myUserId=u;isGuest=false;
+    localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
+    enterLobby();ss('تم إنشاء الحساب بنجاح! 🎉','o');
+  }catch(e){err.textContent='خطأ في الاتصال';}
+}
+
+async function login(){
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
+  if(!u||!p){err.textContent='أدخل الاسم وكلمة السر';return;}
+  err.textContent='جاري التحقق...';
+  try{
+    const snap=await db.ref(`users/${u}`).get();
+    if(!snap.exists()){err.textContent='الحساب غير موجود';return;}
+    if(snap.val().pass!==hashPass(p)){err.textContent='كلمة السر غلط';return;}
+    myName=u;myUserId=u;isGuest=false;
+    localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
+    enterLobby();ss('أهلاً بك! 👋','o');
+  }catch(e){err.textContent='خطأ في الاتصال';}
+}
+
+async function recoverAccount(){
+  const u=document.getElementById('recUser').value.trim().toLowerCase();
+  const ph=document.getElementById('recPhone').value.trim();
+  const np=document.getElementById('recNewPass').value;
+  const err=document.getElementById('recErr');
+  if(!u||!ph||!np){err.textContent='أكمل جميع الحقول';return;}
+  if(np.length<4){err.textContent='كلمة السر الجديدة 4 أحرف على الأقل';return;}
+  err.textContent='جاري التحقق...';
+  try{
+    const snap=await db.ref(`users/${u}`).get();
+    if(!snap.exists()){err.textContent='الحساب غير موجود';return;}
+    if(snap.val().phone!==hashPass(ph)){err.textContent='رقم الجوال غلط';return;}
+    await db.ref(`users/${u}/pass`).set(hashPass(np));
+    err.textContent='';ss('تم تغيير كلمة السر بنجاح! ✅','o');
+    switchTab('login');
+  }catch(e){err.textContent='خطأ في الاتصال';}
+}
+
+function playAsGuest(){
+  myName='ضيف_'+Math.floor(Math.random()*9000+1000);
+  myUserId='guest_'+Date.now();
+  isGuest=true;
+  enterLobby();
+}
+
+function enterLobby(){
+  document.getElementById('badgeName').textContent=myName;
+  document.getElementById('badgeTag').textContent=isGuest?'ضيف — بدون تسجيل':'@'+myUserId;
+  show('s-lobby');
+}
+
+function logout(){
+  localStorage.removeItem('sabaqSession');
+  myName='';myUserId='';isGuest=false;
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginErr').textContent='';
+  switchTab('login');
+  show('s-auth');
+}
+
+function goHome(){
+  clearInterval(timerInt);clearInterval(soloTimerInt);
+  roomRef?.off();currentRound=0;soloLevel=0;soloScore=0;
+  document.getElementById('multiOptions').style.display='none';
+  show('s-lobby');
 }
 
 function showMulti(){
@@ -329,10 +487,54 @@ function showMulti(){
   o.style.display=o.style.display==='none'?'block':'none';
 }
 
+// ===== LEADERBOARD =====
+async function showLeaderboard(){
+  show('s-lb');
+  const el=document.getElementById('lbGlobal');
+  el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">جاري التحميل...</div>';
+  try{
+    const snap=await db.ref('leaderboard').orderByChild('level').limitToLast(20).get();
+    if(!snap.exists()){
+      el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">لا يوجد لاعبون بعد!</div>';
+      return;
+    }
+    const players=[];
+    snap.forEach(c=>players.push({...c.val(),id:c.key}));
+    players.sort((a,b)=>b.level-a.level||b.score-a.score);
+    el.innerHTML=players.map((p,i)=>`
+      <div class="lb-global-item ${i===0?'top1':i===1?'top2':i===2?'top3':''} ${p.id===myUserId?'mine':''}">
+        <div class="lb-rank-num">${RANKS[i]||i+1}</div>
+        <div class="lb-user-info">
+          <div class="lb-user-name">${p.name}${p.id===myUserId?' (أنت)':''}</div>
+          <div class="lb-user-level">مستوى ${p.level} — ${LEVELS[Math.min(p.level-1,9)]?.label||''}</div>
+        </div>
+        <div style="text-align:left">
+          <div class="lb-user-pts">${p.score}</div>
+          <div class="lb-user-lbl">نقطة</div>
+        </div>
+      </div>`).join('');
+  }catch(e){
+    el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">خطأ في التحميل</div>';
+  }
+}
+
+async function saveToLeaderboard(level,score){
+  if(isGuest||!myUserId)return;
+  try{
+    const snap=await db.ref(`leaderboard/${myUserId}`).get();
+    if(snap.exists()){
+      const old=snap.val();
+      if(level>old.level||(level===old.level&&score>old.score)){
+        await db.ref(`leaderboard/${myUserId}`).update({level,score,name:myName});
+      }
+    }else{
+      await db.ref(`leaderboard/${myUserId}`).set({name:myName,level,score});
+    }
+  }catch(e){console.error(e);}
+}
+
 // ===== SOLO =====
 function startSolo(){
-  myName=document.getElementById('myName').value.trim();
-  if(!myName){ss('أدخل اسمك!','e');return;}
   soloLevel=0;soloScore=0;
   startSoloLevel();
 }
@@ -347,12 +549,11 @@ function startSoloLevel(){
   document.getElementById('soloSubLabel').textContent=`خمّن رقماً من 1 إلى ${lv.max}`;
   document.getElementById('soloInput').max=lv.max;
   document.getElementById('soloInput').value='';
-  document.getElementById('soloInput').placeholder='؟';
   document.getElementById('soloHint').textContent='اكتب تخمينك ⬇️';
   document.getElementById('soloHint').className='hint-box he';
   document.getElementById('soloScore').textContent=soloScore;
   document.getElementById('soloTries').textContent=0;
-  document.getElementById('soloLevel').textContent=lv.num;
+  document.getElementById('soloLevelNum').textContent=lv.num;
   document.getElementById('progressFill').style.width=`${(soloLevel/LEVELS.length)*100}%`;
   startSoloTimer(lv.time);
 }
@@ -361,20 +562,14 @@ function startSoloTimer(dur){
   clearInterval(soloTimerInt);
   let left=dur;
   const el=document.getElementById('soloTimer');
-  const update=()=>{
+  const upd=()=>{
     const pct=(left/dur)*360;
     const c=left>10?'#22c55e':left>5?'#f59e0b':'#ef4444';
     el.style.background=`conic-gradient(${c} ${pct}deg,rgba(255,255,255,0.1) ${pct}deg)`;
     el.textContent=left;
   };
-  update();
-  soloTimerInt=setInterval(()=>{
-    left--;update();
-    if(left<=0){
-      clearInterval(soloTimerInt);
-      soloGameOver();
-    }
-  },1000);
+  upd();
+  soloTimerInt=setInterval(()=>{left--;upd();if(left<=0){clearInterval(soloTimerInt);soloGameOver();}},1000);
 }
 
 function soloGuess(){
@@ -382,22 +577,23 @@ function soloGuess(){
   const lv=LEVELS[soloLevel];
   const v=parseInt(inp.value);
   if(isNaN(v)||v<1||v>lv.max){ss(`أدخل رقماً من 1 إلى ${lv.max}`,'e');return;}
-  soloTries++;
-  inp.value='';
+  soloTries++;inp.value='';
   document.getElementById('soloTries').textContent=soloTries;
   const hint=document.getElementById('soloHint');
   if(v===soloSecret){
     clearInterval(soloTimerInt);
     const pts=Math.max(10,100-(soloTries-1)*15);
     soloScore+=pts;
+    saveToLeaderboard(lv.num,soloScore);
     const stars=soloTries===1?'⭐⭐⭐':soloTries<=3?'⭐⭐':soloTries<=6?'⭐':'';
     document.getElementById('lcTitle').textContent=soloTries===1?'مثالي! 🤩':soloTries<=3?'أحسنت! 🎉':'وصلت! 😄';
     document.getElementById('lcSub').textContent=`اجتزت المستوى ${lv.num} — الرقم كان ${soloSecret}`;
     document.getElementById('lcStars').textContent=stars;
     document.getElementById('lcPoints').textContent=`+${pts} نقطة — المجموع: ${soloScore}`;
     const isLast=soloLevel>=LEVELS.length-1;
-    document.getElementById('nextLvlBtn').textContent=isLast?'🏆 أكملت كل المستويات!':'المستوى التالي ▶';
-    document.getElementById('nextLvlBtn').onclick=isLast?()=>goHome():nextSoloLevel;
+    const btn=document.getElementById('nextLvlBtn');
+    btn.textContent=isLast?'🏆 أكملت كل المستويات!':'المستوى التالي ▶';
+    btn.onclick=isLast?()=>goHome():nextSoloLevel;
     confetti();show('s-solo-win');
   }else if(v<soloSecret){
     hint.textContent=`📈 الرقم أكبر! محاولة ${soloTries}`;hint.className='hint-box hl';
@@ -414,6 +610,7 @@ function nextSoloLevel(){
 
 function soloGameOver(){
   const lv=LEVELS[soloLevel];
+  saveToLeaderboard(lv.num,soloScore);
   document.getElementById('overSub').textContent=`وصلت للمستوى ${lv.num} — الرقم كان ${soloSecret}`;
   document.getElementById('overScore').textContent=soloScore;
   show('s-solo-over');
@@ -421,13 +618,11 @@ function soloGameOver(){
 
 // ===== MULTI =====
 async function createRoom(){
-  myName=document.getElementById('myName').value.trim();
-  if(!myName){ss('أدخل اسمك!','e');return;}
   roomCode=Math.floor(1000+Math.random()*9000).toString();isHost=true;
   try{
     await db.ref(`rooms/${roomCode}`).set({
-      host:myId,status:'waiting',round:0,totalRounds:3,secret:0,
-      players:{[myId]:{name:myName,score:0,color:CL[0],emoji:EM[0],isHost:true,tries:0}}
+      host:myUserId,status:'waiting',round:0,totalRounds:3,secret:0,
+      players:{[myUserId]:{name:myName,score:0,color:CL[0],emoji:EM[0],isHost:true,tries:0}}
     });
     document.getElementById('showCode').textContent=roomCode;
     document.getElementById('hostCtrl').style.display='block';
@@ -437,8 +632,6 @@ async function createRoom(){
 }
 
 async function joinRoom(){
-  myName=document.getElementById('myName').value.trim();
-  if(!myName){ss('أدخل اسمك!','e');return;}
   const code=document.getElementById('roomIn').value.trim();
   if(code.length!==4){ss('رقم الغرفة 4 أرقام','e');return;}
   roomCode=code;
@@ -450,7 +643,7 @@ async function joinRoom(){
     const cnt=Object.keys(room.players||{}).length;
     if(cnt>=4){ss('الغرفة ممتلئة!','e');return;}
     isHost=false;
-    await db.ref(`rooms/${roomCode}/players/${myId}`).set({
+    await db.ref(`rooms/${roomCode}/players/${myUserId}`).set({
       name:myName,score:0,color:CL[cnt],emoji:EM[cnt],isHost:false,tries:0
     });
     document.getElementById('showCode').textContent=roomCode;
@@ -464,14 +657,14 @@ function listenRoom(){
   roomRef=db.ref(`rooms/${roomCode}`);
   roomRef.on('value',snap=>{
     if(!snap.exists())return;
-    const newData=snap.val();
-    if(newData.status==='waiting')updateWait(newData);
-    else if(newData.status==='playing')onPlaying(newData);
-    else if(newData.status==='round_end')onRoundEnd(newData);
-    else if(newData.status==='finished')onFinished(newData);
-    gData=newData;
+    const d=snap.val();
+    if(d.status==='waiting')updateWait(d);
+    else if(d.status==='playing')onPlaying(d);
+    else if(d.status==='round_end')onRoundEnd(d);
+    else if(d.status==='finished')onFinished(d);
+    gData=d;
   });
-  db.ref(`rooms/${roomCode}/players/${myId}`).onDisconnect().remove();
+  db.ref(`rooms/${roomCode}/players/${myUserId}`).onDisconnect().remove();
 }
 
 function updateWait(d){
@@ -480,7 +673,7 @@ function updateWait(d){
   document.getElementById('pList').innerHTML=Object.entries(ps).map(([id,p])=>`
     <div class="player-item">
       <div class="p-av" style="background:${p.color}22;color:${p.color}">${p.emoji}</div>
-      <div class="p-nm">${p.name}${id===myId?' (أنت)':''}</div>
+      <div class="p-nm">${p.name}${id===myUserId?' (أنت)':''}</div>
       ${p.isHost?'<span class="host-b">👑</span>':''}
     </div>`).join('');
   if(isHost)document.getElementById('startBtn').disabled=cnt<2;
@@ -506,8 +699,7 @@ async function startRound(n){
 function onPlaying(d){
   const isNewRound=d.round!==currentRound;
   if(isNewRound){
-    currentRound=d.round;
-    show('s-game');canGuess=true;
+    currentRound=d.round;show('s-game');canGuess=true;
     document.getElementById('roundLabel').textContent=`الجولة ${d.round}/${d.totalRounds}`;
     document.getElementById('gInput').value='';
     document.getElementById('gInput').disabled=false;
@@ -533,10 +725,10 @@ function updateLB(d){
   const ps=d.players||{};
   const sorted=Object.entries(ps).sort((a,b)=>(b[1].score||0)-(a[1].score||0));
   document.getElementById('lb').innerHTML=sorted.map(([id,p],i)=>`
-    <div class="lb-item ${id===myId?'me':''} ${d.winner===id?'won':''}">
+    <div class="lb-item ${id===myUserId?'me':''} ${d.winner===id?'won':''}">
       <div class="lb-rk">${MD[i]||i+1}</div>
       <div class="p-av" style="background:${p.color}22;color:${p.color};width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem">${p.emoji}</div>
-      <div class="lb-nm">${p.name}${id===myId?' (أنت)':''}</div>
+      <div class="lb-nm">${p.name}${id===myUserId?' (أنت)':''}</div>
       <div><div class="lb-sc">${p.score||0}pt</div><div class="lb-tr">${p.tries||0} محاولة</div></div>
     </div>`).join('');
 }
@@ -547,19 +739,19 @@ async function submitGuess(){
   const v=parseInt(inp.value);
   if(isNaN(v)||v<1||v>100){ss('أدخل رقماً من 1 إلى 100','e');return;}
   const secret=gData.secret;
-  const tries=(gData.players[myId]?.tries||0)+1;
-  await db.ref(`rooms/${roomCode}/players/${myId}/tries`).set(tries);
+  const tries=(gData.players[myUserId]?.tries||0)+1;
+  await db.ref(`rooms/${roomCode}/players/${myUserId}/tries`).set(tries);
   inp.value='';
   const hint=document.getElementById('hintEl');
   if(v===secret){
     canGuess=false;clearInterval(timerInt);
     const pts=Math.max(10,100-(tries-1)*10);
     hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;hint.className='hint-box hw';
-    const newScore=(gData.players[myId]?.score||0)+pts;
+    const newScore=(gData.players[myUserId]?.score||0)+pts;
     await db.ref().update({
-      [`rooms/${roomCode}/players/${myId}/score`]:newScore,
-      [`rooms/${roomCode}/players/${myId}/done`]:true,
-      [`rooms/${roomCode}/winner`]:myId,
+      [`rooms/${roomCode}/players/${myUserId}/score`]:newScore,
+      [`rooms/${roomCode}/players/${myUserId}/done`]:true,
+      [`rooms/${roomCode}/winner`]:myUserId,
       [`rooms/${roomCode}/status`]:'round_end'
     });
   }else if(v<secret){
@@ -573,9 +765,9 @@ function onRoundEnd(d){
   clearInterval(timerInt);canGuess=false;updateLB(d);
   document.getElementById('gInput').disabled=true;
   const w=d.players[d.winner];
-  if(w&&d.winner!==myId)ss(`${w.emoji} ${w.name} فاز! الرقم كان ${d.secret}`,'i',3500);
+  if(w&&d.winner!==myUserId)ss(`${w.emoji} ${w.name} فاز! الرقم كان ${d.secret}`,'i',3500);
   else if(!d.winner)ss(`⏰ انتهى الوقت! الرقم كان ${d.secret}`,'i',3500);
-  if(d.winner!==myId){
+  if(d.winner!==myUserId){
     const h=document.getElementById('hintEl');
     h.textContent=`الرقم كان ${d.secret}`;h.className='hint-box hd';
   }
@@ -598,7 +790,7 @@ function onFinished(d){
     <div class="fi ${fc[i]||''}">
       <div style="font-size:1.3rem">${MD[i]||i+1}</div>
       <div class="p-av" style="background:${p.color}22;color:${p.color};width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem">${p.emoji}</div>
-      <div style="flex:1;font-weight:700;font-size:.95rem">${p.name}${id===myId?' (أنت)':''}</div>
+      <div style="flex:1;font-weight:700;font-size:.95rem">${p.name}${id===myUserId?' (أنت)':''}</div>
       <div style="font-size:1.2rem;font-weight:900;color:var(--gold)">${p.score||0}</div>
     </div>`).join('');
 }
@@ -608,15 +800,7 @@ async function playAgain(){
   const ps=gData.players||{};const upd={};
   Object.keys(ps).forEach(id=>{upd[`rooms/${roomCode}/players/${id}/score`]=0;});
   upd[`rooms/${roomCode}/status`]='waiting';upd[`rooms/${roomCode}/round`]=0;
-  currentRound=0;
-  await db.ref().update(upd);show('s-wait');
-}
-
-function goHome(){
-  clearInterval(timerInt);clearInterval(soloTimerInt);
-  roomRef?.off();currentRound=0;soloLevel=0;soloScore=0;
-  document.getElementById('multiOptions').style.display='none';
-  show('s-lobby');
+  currentRound=0;await db.ref().update(upd);show('s-wait');
 }
 
 function confetti(){
@@ -631,12 +815,19 @@ function confetti(){
     ctx.clearRect(0,0,cv.width,cv.height);
     ps.forEach(p=>{p.y+=p.spd;p.ang+=p.spin;ctx.save();ctx.translate(p.x,p.y);
       ctx.rotate(p.ang*Math.PI/180);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
-    requestAnimationFrame(go);
-  };go();
+    requestAnimationFrame(go);};go();
 }
+
+// auto login
+window.onload=()=>{
+  const s=localStorage.getItem('sabaqSession');
+  if(s){const u=JSON.parse(s);myName=u.name;myUserId=u.id;isGuest=false;enterLobby();}
+};
 
 document.getElementById('gInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitGuess();});
 document.getElementById('soloInput').addEventListener('keydown',e=>{if(e.key==='Enter')soloGuess();});
+document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')login();});
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')login();});
 </script>
 </body>
 </html>
