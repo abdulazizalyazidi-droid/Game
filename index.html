@@ -15,6 +15,8 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .screen.active{display:flex}
 #s-game{display:none;flex-direction:column;overflow:hidden}
 #s-game.active{display:flex}
+#s-solo{display:none;flex-direction:column;overflow:hidden}
+#s-solo.active{display:flex}
 .game-scroll{flex:1;overflow-y:auto;padding:14px 16px 8px}
 .hint-row{padding:8px 16px;background:var(--bg)}
 .input-row-wrap{padding:8px 16px;background:var(--bg);border-top:1px solid var(--border)}
@@ -31,6 +33,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .btn-primary{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff}
 .btn-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid var(--border);margin-top:8px}
 .btn-gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
+.btn-green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;margin-top:8px}
 .btn:disabled{opacity:0.4;cursor:not-allowed}
 .divider{display:flex;align-items:center;gap:12px;margin:2px 0 12px;color:rgba(255,255,255,0.2);font-size:.85rem;width:100%;max-width:360px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -63,6 +66,25 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .inp-row{display:flex;gap:8px}
 .inp-row .inp{margin-bottom:0;font-size:1.3rem;text-align:center;flex:1}
 .inp-row .btn{width:auto;padding:14px 16px}
+
+/* SOLO */
+.solo-header{padding:14px 16px 0;flex-shrink:0}
+.level-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;padding:6px 16px;border-radius:99px;font-weight:900;font-size:.95rem;display:inline-block;margin-bottom:8px}
+.level-info{color:rgba(255,255,255,0.5);font-size:.85rem;margin-bottom:4px}
+.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-bottom:4px}
+.progress-fill{height:100%;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:99px;transition:width .5s}
+.solo-stats{display:flex;gap:12px;margin-bottom:8px}
+.stat-box{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center}
+.stat-num{font-size:1.4rem;font-weight:900;color:var(--gold)}
+.stat-lbl{font-size:.72rem;color:rgba(255,255,255,0.4)}
+
+/* SOLO RESULTS */
+.level-complete{text-align:center;padding:20px}
+.lc-emoji{font-size:4rem;margin-bottom:8px}
+.lc-title{font-size:1.5rem;font-weight:900;margin-bottom:4px}
+.lc-sub{color:rgba(255,255,255,0.5);font-size:.9rem;margin-bottom:20px}
+.stars{font-size:2.5rem;margin-bottom:16px}
+
 .podium{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin:16px 0}
 .pod-p{display:flex;flex-direction:column;align-items:center;gap:5px}
 .pod-b{border-radius:12px 12px 0 0;width:85px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-size:1.7rem}
@@ -88,17 +110,35 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 <div class="sb" id="sb"></div>
 <canvas id="cv"></canvas>
 
+<!-- LOBBY -->
 <div class="screen active" id="s-lobby">
   <div class="logo">🏁 سباق</div>
-  <div class="logo-sub">لعبة تخمين — حتى 4 لاعبين</div>
-  <div class="card"><h2>👤 اسمك في اللعبة</h2><input class="inp" id="myName" placeholder="مثال: عبدالعزيز" maxlength="10"></div>
-  <div class="card"><h2>🏠 إنشاء غرفة جديدة</h2><button class="btn btn-gold" onclick="createRoom()">إنشاء غرفة 🎮</button></div>
-  <div class="divider">أو</div>
-  <div class="card"><h2>🚪 الانضمام لغرفة</h2>
-    <input class="inp" id="roomIn" placeholder="رقم الغرفة" maxlength="4" style="text-align:center;font-size:1.5rem;letter-spacing:6px" oninput="this.value=this.value.replace(/\D/g,'')">
-    <button class="btn btn-primary" onclick="joinRoom()">انضم ▶</button></div>
+  <div class="logo-sub">لعبة تخمين الأرقام</div>
+  <div class="card">
+    <h2>👤 اسمك في اللعبة</h2>
+    <input class="inp" id="myName" placeholder="مثال: عبدالعزيز" maxlength="10">
+  </div>
+  <div class="card">
+    <h2>🎮 اختر وضع اللعب</h2>
+    <button class="btn btn-green" onclick="startSolo()">🧍 العب منفرداً — مستويات</button>
+    <div style="color:rgba(255,255,255,0.3);text-align:center;font-size:.78rem;margin:8px 0">أو</div>
+    <button class="btn btn-gold" onclick="showMulti()">👥 العب مع أصحابك</button>
+  </div>
+  <div id="multiOptions" style="display:none;width:100%;max-width:360px">
+    <div class="card">
+      <h2>🏠 إنشاء غرفة جديدة</h2>
+      <button class="btn btn-gold" onclick="createRoom()">إنشاء غرفة 🎮</button>
+    </div>
+    <div class="divider">أو</div>
+    <div class="card">
+      <h2>🚪 الانضمام لغرفة</h2>
+      <input class="inp" id="roomIn" placeholder="رقم الغرفة" maxlength="4" style="text-align:center;font-size:1.5rem;letter-spacing:6px" oninput="this.value=this.value.replace(/\D/g,'')">
+      <button class="btn btn-primary" onclick="joinRoom()">انضم ▶</button>
+    </div>
+  </div>
 </div>
 
+<!-- WAITING -->
 <div class="screen" id="s-wait">
   <div style="text-align:center;margin-top:20px">
     <div style="color:rgba(255,255,255,0.45);font-size:.9rem">شارك الرقم مع أصحابك</div>
@@ -115,8 +155,10 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     </div>
     <div id="guestCtrl" style="display:none;color:rgba(255,255,255,0.4);text-align:center">في انتظار صاحب الغرفة<span class="wdots"></span></div>
   </div>
+  <button class="btn btn-secondary" onclick="goHome()" style="width:100%;max-width:360px;margin-top:8px">🏠 رجوع</button>
 </div>
 
+<!-- MULTI GAME -->
 <div id="s-game">
   <div class="game-scroll">
     <div class="round-bar">
@@ -129,7 +171,7 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     <div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div>
   </div>
   <div class="input-row-wrap">
-    <div class="sub-label">خمّن رقماً من 1 إلى 100</div>
+    <div class="sub-label" id="rangeLabel">خمّن رقماً من 1 إلى 100</div>
     <div class="inp-row">
       <input class="inp" type="number" id="gInput" placeholder="؟" min="1" max="100" inputmode="numeric">
       <button class="btn btn-primary" onclick="submitGuess()" style="width:auto;padding:14px 16px">🚀</button>
@@ -138,6 +180,82 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
   <div class="ad-bar">☕ استراحة بوصالح</div>
 </div>
 
+<!-- SOLO GAME -->
+<div id="s-solo">
+  <div class="solo-header">
+    <div class="round-bar">
+      <div>
+        <div class="level-badge" id="soloLevelBadge">المستوى 1</div>
+        <div class="level-info" id="soloRangeInfo">خمّن من 1 إلى 10</div>
+      </div>
+      <div class="timer" id="soloTimer">--</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="solo-stats">
+      <div class="stat-box">
+        <div class="stat-num" id="soloScore">0</div>
+        <div class="stat-lbl">نقاط</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="soloTries">0</div>
+        <div class="stat-lbl">محاولات</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="soloLevel">1</div>
+        <div class="stat-lbl">مستوى</div>
+      </div>
+    </div>
+  </div>
+  <div class="hint-row">
+    <div class="hint-box he" id="soloHint">اكتب تخمينك ⬇️</div>
+  </div>
+  <div class="input-row-wrap">
+    <div class="sub-label" id="soloSubLabel">خمّن رقماً من 1 إلى 10</div>
+    <div class="inp-row">
+      <input class="inp" type="number" id="soloInput" placeholder="؟" inputmode="numeric">
+      <button class="btn btn-primary" onclick="soloGuess()" style="width:auto;padding:14px 16px">🚀</button>
+    </div>
+  </div>
+  <div class="ad-bar">☕ استراحة بوصالح</div>
+</div>
+
+<!-- SOLO LEVEL COMPLETE -->
+<div class="screen" id="s-solo-win">
+  <div class="level-complete">
+    <div class="lc-emoji">🎉</div>
+    <div class="lc-title" id="lcTitle">أحسنت!</div>
+    <div class="lc-sub" id="lcSub">اجتزت المستوى 1</div>
+    <div class="stars" id="lcStars">⭐⭐⭐</div>
+    <div style="font-size:1.1rem;color:var(--gold);font-weight:900;margin-bottom:20px" id="lcPoints">+100 نقطة</div>
+    <div style="width:100%;max-width:300px">
+      <button class="btn btn-gold" onclick="nextSoloLevel()" id="nextLvlBtn">المستوى التالي ▶</button>
+      <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
+    </div>
+  </div>
+  <div class="ad-bar" style="position:fixed;bottom:0;left:0;right:0">☕ استراحة بوصالح</div>
+</div>
+
+<!-- SOLO GAME OVER -->
+<div class="screen" id="s-solo-over">
+  <div class="level-complete">
+    <div class="lc-emoji">⏰</div>
+    <div class="lc-title">انتهى الوقت!</div>
+    <div class="lc-sub" id="overSub">وصلت للمستوى 3</div>
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:20px;margin:16px 0;width:100%;max-width:300px">
+      <div style="font-size:2rem;font-weight:900;color:var(--gold);text-align:center" id="overScore">250</div>
+      <div style="color:rgba(255,255,255,0.4);text-align:center;font-size:.9rem">مجموع نقاطك</div>
+    </div>
+    <div style="width:100%;max-width:300px">
+      <button class="btn btn-gold" onclick="startSolo()">🔄 حاول مجدداً</button>
+      <button class="btn btn-secondary" onclick="goHome()">🏠 الرئيسية</button>
+    </div>
+  </div>
+  <div class="ad-bar" style="position:fixed;bottom:0;left:0;right:0">☕ استراحة بوصالح</div>
+</div>
+
+<!-- MULTI RESULTS -->
 <div class="screen" id="s-results">
   <div style="font-size:1.7rem;font-weight:900;text-align:center;margin-bottom:4px;margin-top:20px">🏆 النتائج النهائية</div>
   <div style="color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px;font-size:.85rem">بعد 3 جولات</div>
@@ -165,8 +283,26 @@ const db=firebase.database();
 const CL=['#f59e0b','#3b82f6','#22c55e','#ef4444'];
 const EM=['🦁','🐯','🦊','🐺'];
 const MD=['🥇','🥈','🥉','4️⃣'];
+
+// مستويات اللعب الفردي
+const LEVELS=[
+  {num:1,max:10,time:30,label:'مبتدئ'},
+  {num:2,max:20,time:28,label:'سهل'},
+  {num:3,max:50,time:25,label:'متوسط'},
+  {num:4,max:75,time:22,label:'صعب'},
+  {num:5,max:100,time:20,label:'محترف'},
+  {num:6,max:150,time:18,label:'خبير'},
+  {num:7,max:200,time:15,label:'أسطورة'},
+  {num:8,max:300,time:12,label:'لا يصدق'},
+  {num:9,max:500,time:10,label:'مستحيل 🔥'},
+  {num:10,max:1000,time:8,label:'الله يعينك 😅'},
+];
+
 let myId=Date.now().toString(36)+Math.random().toString(36).substr(2);
 let myName='',roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
+
+// Solo state
+let soloLevel=0,soloSecret=0,soloTries=0,soloScore=0,soloTimerInt=null;
 
 function ss(msg,t='i',ms=3000){
   const b=document.getElementById('sb');
@@ -176,21 +312,118 @@ function ss(msg,t='i',ms=3000){
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('s-game').classList.remove('active');
-  if(id==='s-game'){
-    document.getElementById('s-game').classList.add('active');
+  ['s-game','s-solo'].forEach(x=>document.getElementById(x).classList.remove('active'));
+  const gameScreens=['s-game','s-solo'];
+  if(gameScreens.includes(id)){
+    document.getElementById(id).classList.add('active');
     document.getElementById('adOther').style.display='none';
   }else{
     document.getElementById(id).classList.add('active');
-    document.getElementById('adOther').style.display='block';
+    document.getElementById('adOther').style.display=
+      ['s-solo-win','s-solo-over'].includes(id)?'none':'block';
   }
 }
 
+function showMulti(){
+  const o=document.getElementById('multiOptions');
+  o.style.display=o.style.display==='none'?'block':'none';
+}
+
+// ===== SOLO =====
+function startSolo(){
+  myName=document.getElementById('myName').value.trim();
+  if(!myName){ss('أدخل اسمك!','e');return;}
+  soloLevel=0;soloScore=0;
+  startSoloLevel();
+}
+
+function startSoloLevel(){
+  const lv=LEVELS[soloLevel];
+  soloSecret=Math.floor(Math.random()*lv.max)+1;
+  soloTries=0;
+  show('s-solo');
+  document.getElementById('soloLevelBadge').textContent=`المستوى ${lv.num} — ${lv.label}`;
+  document.getElementById('soloRangeInfo').textContent=`خمّن من 1 إلى ${lv.max}`;
+  document.getElementById('soloSubLabel').textContent=`خمّن رقماً من 1 إلى ${lv.max}`;
+  document.getElementById('soloInput').max=lv.max;
+  document.getElementById('soloInput').value='';
+  document.getElementById('soloInput').placeholder='؟';
+  document.getElementById('soloHint').textContent='اكتب تخمينك ⬇️';
+  document.getElementById('soloHint').className='hint-box he';
+  document.getElementById('soloScore').textContent=soloScore;
+  document.getElementById('soloTries').textContent=0;
+  document.getElementById('soloLevel').textContent=lv.num;
+  document.getElementById('progressFill').style.width=`${(soloLevel/LEVELS.length)*100}%`;
+  startSoloTimer(lv.time);
+}
+
+function startSoloTimer(dur){
+  clearInterval(soloTimerInt);
+  let left=dur;
+  const el=document.getElementById('soloTimer');
+  const update=()=>{
+    const pct=(left/dur)*360;
+    const c=left>10?'#22c55e':left>5?'#f59e0b':'#ef4444';
+    el.style.background=`conic-gradient(${c} ${pct}deg,rgba(255,255,255,0.1) ${pct}deg)`;
+    el.textContent=left;
+  };
+  update();
+  soloTimerInt=setInterval(()=>{
+    left--;update();
+    if(left<=0){
+      clearInterval(soloTimerInt);
+      soloGameOver();
+    }
+  },1000);
+}
+
+function soloGuess(){
+  const inp=document.getElementById('soloInput');
+  const lv=LEVELS[soloLevel];
+  const v=parseInt(inp.value);
+  if(isNaN(v)||v<1||v>lv.max){ss(`أدخل رقماً من 1 إلى ${lv.max}`,'e');return;}
+  soloTries++;
+  inp.value='';
+  document.getElementById('soloTries').textContent=soloTries;
+  const hint=document.getElementById('soloHint');
+  if(v===soloSecret){
+    clearInterval(soloTimerInt);
+    const pts=Math.max(10,100-(soloTries-1)*15);
+    soloScore+=pts;
+    const stars=soloTries===1?'⭐⭐⭐':soloTries<=3?'⭐⭐':soloTries<=6?'⭐':'';
+    document.getElementById('lcTitle').textContent=soloTries===1?'مثالي! 🤩':soloTries<=3?'أحسنت! 🎉':'وصلت! 😄';
+    document.getElementById('lcSub').textContent=`اجتزت المستوى ${lv.num} — الرقم كان ${soloSecret}`;
+    document.getElementById('lcStars').textContent=stars;
+    document.getElementById('lcPoints').textContent=`+${pts} نقطة — المجموع: ${soloScore}`;
+    const isLast=soloLevel>=LEVELS.length-1;
+    document.getElementById('nextLvlBtn').textContent=isLast?'🏆 أكملت كل المستويات!':'المستوى التالي ▶';
+    document.getElementById('nextLvlBtn').onclick=isLast?()=>goHome():nextSoloLevel;
+    confetti();show('s-solo-win');
+  }else if(v<soloSecret){
+    hint.textContent=`📈 الرقم أكبر! محاولة ${soloTries}`;hint.className='hint-box hl';
+  }else{
+    hint.textContent=`📉 الرقم أصغر! محاولة ${soloTries}`;hint.className='hint-box hh';
+  }
+}
+
+function nextSoloLevel(){
+  soloLevel++;
+  if(soloLevel>=LEVELS.length){goHome();return;}
+  startSoloLevel();
+}
+
+function soloGameOver(){
+  const lv=LEVELS[soloLevel];
+  document.getElementById('overSub').textContent=`وصلت للمستوى ${lv.num} — الرقم كان ${soloSecret}`;
+  document.getElementById('overScore').textContent=soloScore;
+  show('s-solo-over');
+}
+
+// ===== MULTI =====
 async function createRoom(){
   myName=document.getElementById('myName').value.trim();
   if(!myName){ss('أدخل اسمك!','e');return;}
-  roomCode=Math.floor(1000+Math.random()*9000).toString();
-  isHost=true;
+  roomCode=Math.floor(1000+Math.random()*9000).toString();isHost=true;
   try{
     await db.ref(`rooms/${roomCode}`).set({
       host:myId,status:'waiting',round:0,totalRounds:3,secret:0,
@@ -242,8 +475,7 @@ function listenRoom(){
 }
 
 function updateWait(d){
-  const ps=d.players||{};
-  const cnt=Object.keys(ps).length;
+  const ps=d.players||{};const cnt=Object.keys(ps).length;
   document.getElementById('pCount').textContent=`${cnt}/4`;
   document.getElementById('pList').innerHTML=Object.entries(ps).map(([id,p])=>`
     <div class="player-item">
@@ -258,8 +490,7 @@ async function startGame(){await startRound(1);}
 
 async function startRound(n){
   const secret=Math.floor(Math.random()*100)+1;
-  const ps=gData.players||{};
-  const upd={};
+  const ps=gData.players||{};const upd={};
   Object.keys(ps).forEach(id=>{
     upd[`rooms/${roomCode}/players/${id}/tries`]=0;
     upd[`rooms/${roomCode}/players/${id}/done`]=false;
@@ -276,33 +507,25 @@ function onPlaying(d){
   const isNewRound=d.round!==currentRound;
   if(isNewRound){
     currentRound=d.round;
-    show('s-game');
-    canGuess=true;
+    show('s-game');canGuess=true;
     document.getElementById('roundLabel').textContent=`الجولة ${d.round}/${d.totalRounds}`;
     document.getElementById('gInput').value='';
     document.getElementById('gInput').disabled=false;
     const h=document.getElementById('hintEl');
-    h.textContent='اكتب تخمينك ⬇️';
-    h.className='hint-box he';
+    h.textContent='اكتب تخمينك ⬇️';h.className='hint-box he';
     runTimer(d.startTime);
   }
   updateLB(d);
 }
 
 function runTimer(st){
-  clearInterval(timerInt);
-  const dur=60;
-  const el=document.getElementById('timerEl');
+  clearInterval(timerInt);const dur=60;const el=document.getElementById('timerEl');
   timerInt=setInterval(async()=>{
     const left=Math.max(0,dur-Math.floor((Date.now()-st)/1000));
-    const pct=(left/dur)*360;
-    const c=left>20?'#22c55e':left>10?'#f59e0b':'#ef4444';
+    const pct=(left/dur)*360;const c=left>20?'#22c55e':left>10?'#f59e0b':'#ef4444';
     el.style.background=`conic-gradient(${c} ${pct}deg,rgba(255,255,255,0.1) ${pct}deg)`;
     el.textContent=left;
-    if(left===0){
-      clearInterval(timerInt);
-      if(isHost)await db.ref(`rooms/${roomCode}/status`).set('round_end');
-    }
+    if(left===0){clearInterval(timerInt);if(isHost)await db.ref(`rooms/${roomCode}/status`).set('round_end');}
   },500);
 }
 
@@ -331,8 +554,7 @@ async function submitGuess(){
   if(v===secret){
     canGuess=false;clearInterval(timerInt);
     const pts=Math.max(10,100-(tries-1)*10);
-    hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;
-    hint.className='hint-box hw';
+    hint.textContent=`🎉 صح! الرقم ${secret} — +${pts} نقطة!`;hint.className='hint-box hw';
     const newScore=(gData.players[myId]?.score||0)+pts;
     await db.ref().update({
       [`rooms/${roomCode}/players/${myId}/score`]:newScore,
@@ -341,11 +563,9 @@ async function submitGuess(){
       [`rooms/${roomCode}/status`]:'round_end'
     });
   }else if(v<secret){
-    hint.textContent=`📈 الرقم أكبر! محاولة ${tries}`;
-    hint.className='hint-box hl';
+    hint.textContent=`📈 الرقم أكبر! محاولة ${tries}`;hint.className='hint-box hl';
   }else{
-    hint.textContent=`📉 الرقم أصغر! محاولة ${tries}`;
-    hint.className='hint-box hh';
+    hint.textContent=`📉 الرقم أصغر! محاولة ${tries}`;hint.className='hint-box hh';
   }
 }
 
@@ -357,8 +577,7 @@ function onRoundEnd(d){
   else if(!d.winner)ss(`⏰ انتهى الوقت! الرقم كان ${d.secret}`,'i',3500);
   if(d.winner!==myId){
     const h=document.getElementById('hintEl');
-    h.textContent=`الرقم كان ${d.secret}`;
-    h.className='hint-box hd';
+    h.textContent=`الرقم كان ${d.secret}`;h.className='hint-box hd';
   }
   if(isHost)setTimeout(async()=>{
     if(d.round<d.totalRounds)await startRound(d.round+1);
@@ -388,14 +607,16 @@ async function playAgain(){
   if(!isHost){ss('فقط صاحب الغرفة يقدر يبدأ','i');return;}
   const ps=gData.players||{};const upd={};
   Object.keys(ps).forEach(id=>{upd[`rooms/${roomCode}/players/${id}/score`]=0;});
-  upd[`rooms/${roomCode}/status`]='waiting';
-  upd[`rooms/${roomCode}/round`]=0;
+  upd[`rooms/${roomCode}/status`]='waiting';upd[`rooms/${roomCode}/round`]=0;
   currentRound=0;
   await db.ref().update(upd);show('s-wait');
 }
 
 function goHome(){
-  roomRef?.off();clearInterval(timerInt);currentRound=0;show('s-lobby');
+  clearInterval(timerInt);clearInterval(soloTimerInt);
+  roomRef?.off();currentRound=0;soloLevel=0;soloScore=0;
+  document.getElementById('multiOptions').style.display='none';
+  show('s-lobby');
 }
 
 function confetti(){
@@ -405,8 +626,7 @@ function confetti(){
     x:Math.random()*cv.width,y:-10,w:Math.random()*10+4,h:Math.random()*5+3,
     c:CL[Math.floor(Math.random()*CL.length)],spd:Math.random()*3+2,ang:Math.random()*360,spin:Math.random()*5-2.5
   }));
-  let f=0;
-  const go=()=>{
+  let f=0;const go=()=>{
     if(f++>180){ctx.clearRect(0,0,cv.width,cv.height);return;}
     ctx.clearRect(0,0,cv.width,cv.height);
     ps.forEach(p=>{p.y+=p.spd;p.ang+=p.spin;ctx.save();ctx.translate(p.x,p.y);
@@ -416,6 +636,7 @@ function confetti(){
 }
 
 document.getElementById('gInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitGuess();});
+document.getElementById('soloInput').addEventListener('keydown',e=>{if(e.key==='Enter')soloGuess();});
 </script>
 </body>
 </html>
