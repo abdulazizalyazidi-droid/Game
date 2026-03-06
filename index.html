@@ -17,9 +17,10 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 #s-game.active{display:flex}
 #s-solo{display:none;flex-direction:column;overflow:hidden}
 #s-solo.active{display:flex}
+#s-solo-ready{display:none;flex-direction:column;overflow:hidden}
+#s-solo-ready.active{display:flex}
 .game-scroll{flex:1;overflow-y:auto;padding:14px 16px 8px}
 .hint-row{padding:8px 16px;background:var(--bg)}
-.input-row-wrap{padding:8px 16px;background:var(--bg);border-top:1px solid var(--border)}
 .ad-bar{text-align:center;padding:10px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;font-size:1rem;font-weight:900;font-family:'Tajawal',sans-serif;flex-shrink:0}
 .logo{font-size:3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;margin-top:16px}
 .logo-sub{color:rgba(255,255,255,0.4);text-align:center;font-size:.95rem;margin-bottom:16px}
@@ -34,7 +35,6 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .btn-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid var(--border)}
 .btn-gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
 .btn-green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
-.btn-red{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
 .btn-lb{background:linear-gradient(135deg,#6366f1,#4338ca);color:#fff}
 .btn-ghost{background:transparent;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);font-size:.9rem}
 .btn:disabled{opacity:0.4;cursor:not-allowed}
@@ -60,41 +60,47 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .lb-nm{flex:1;font-weight:700;font-size:.9rem}
 .lb-sc{font-weight:900;color:var(--gold);font-size:.9rem}
 .lb-tr{font-size:.7rem;color:rgba(255,255,255,0.35)}
-.hint-box{padding:12px 14px;border-radius:14px;text-align:center;font-size:1rem;font-weight:700;min-height:52px;display:flex;align-items:center;justify-content:center}
+.hint-box{padding:12px 14px;border-radius:14px;text-align:center;font-size:1rem;font-weight:700;min-height:52px;display:flex;align-items:center;justify-content:center;width:100%}
 .hh{background:rgba(239,68,68,0.9);color:#fff}
 .hl{background:rgba(59,130,246,0.9);color:#fff}
 .hw{background:rgba(34,197,94,0.9);color:#fff}
 .hd{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)}
 .he{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
-.inp-row{display:flex;gap:8px}
-.inp-row .inp{margin-bottom:0;font-size:1.3rem;text-align:center;flex:1}
-.inp-row .btn{width:auto;padding:14px 16px}
 
-/* SOLO HEADER */
-.solo-header{padding:14px 16px 0;flex-shrink:0}
-.level-badge{padding:6px 16px;border-radius:99px;font-weight:900;font-size:.9rem;display:inline-block;margin-bottom:6px}
-.progress-bar{width:100%;height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-bottom:8px}
+/* CUSTOM KEYBOARD */
+.kb-wrap{flex-shrink:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 12px 12px}
+.kb-display{background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.15);border-radius:14px;padding:12px 16px;text-align:center;font-size:2rem;font-weight:900;color:#fff;margin-bottom:10px;min-height:58px;letter-spacing:4px}
+.kb-display.empty{color:rgba(255,255,255,0.2);font-size:1.1rem;font-weight:400;letter-spacing:0;padding-top:17px}
+.kb-range{font-size:.8rem;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:8px;font-weight:700}
+.kb-range span{color:#fff;font-weight:900}
+.kb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kb-btn{padding:16px 0;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1.5rem;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.08);color:#fff;transition:all .15s;user-select:none}
+.kb-btn:active{transform:scale(0.93);background:rgba(255,255,255,0.18)}
+.kb-del{background:rgba(239,68,68,0.15);color:#fca5a5}
+.kb-del:active{background:rgba(239,68,68,0.3)}
+.kb-send{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-size:1.1rem}
+.kb-send:active{background:linear-gradient(135deg,#6d28d9,#4338ca)}
+.kb-send:disabled{opacity:0.3;cursor:not-allowed}
+.kb-zero{grid-column:span 1}
+
+/* solo header */
+.solo-header{padding:12px 16px 0;flex-shrink:0}
+.level-badge{padding:6px 14px;border-radius:99px;font-weight:900;font-size:.88rem;display:inline-block;margin-bottom:6px}
+.progress-bar{width:100%;height:6px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-bottom:8px}
 .progress-fill{height:100%;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:99px;transition:width .5s}
 .solo-stats{display:flex;gap:8px;margin-bottom:8px}
 .stat-box{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:8px;text-align:center}
 .stat-num{font-size:1.3rem;font-weight:900;color:var(--gold)}
 .stat-lbl{font-size:.68rem;color:rgba(255,255,255,0.4)}
 
-/* النطاق واضح */
-.range-label{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;text-align:center;margin-bottom:8px}
-.range-label span{font-size:1.1rem;font-weight:900;color:#fff}
-.range-label small{font-size:.8rem;color:rgba(255,255,255,0.5);display:block;margin-bottom:2px}
-
-/* شاشة الاستعداد */
-#s-solo-ready{display:none;flex-direction:column;overflow:hidden}
-#s-solo-ready.active{display:flex}
+/* ready screen */
 .ready-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
 .ready-emoji{font-size:5rem;margin-bottom:12px;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .ready-level{font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:6px}
-.ready-title{font-size:2rem;font-weight:900;margin-bottom:4px}
-.ready-range{font-size:1.1rem;color:var(--gold);font-weight:700;margin-bottom:6px}
-.ready-time{font-size:.9rem;color:rgba(255,255,255,0.5);margin-bottom:24px}
+.ready-title{font-size:2rem;font-weight:900;margin-bottom:8px}
+.ready-range{font-size:1.2rem;color:var(--gold);font-weight:900;margin-bottom:6px}
+.ready-time{font-size:.9rem;color:rgba(255,255,255,0.5);margin-bottom:8px}
 .ready-diff{display:inline-block;padding:6px 20px;border-radius:99px;font-weight:900;font-size:1rem;margin-bottom:24px}
 .diff-easy{background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.4);color:#86efac}
 .diff-med{background:rgba(251,191,36,0.2);border:1px solid rgba(251,191,36,0.4);color:#fde68a}
@@ -102,13 +108,10 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#fff;height:100
 .diff-insane{background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);color:#d8b4fe}
 .ready-btn{width:100%;max-width:280px;padding:18px;border:none;border-radius:18px;font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;box-shadow:0 0 30px rgba(34,197,94,0.3)}
 
-/* INPUT واضح */
-.input-area{padding:10px 16px 10px;background:var(--bg);border-top:2px solid rgba(255,255,255,0.1)}
-.input-label{font-size:1rem;font-weight:700;color:rgba(255,255,255,0.7);text-align:center;margin-bottom:8px}
-.big-input{width:100%;padding:16px;background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.2);border-radius:14px;color:#fff;font-family:'Tajawal',sans-serif;font-size:1.5rem;text-align:center;outline:none;transition:border .2s}
-.big-input:focus{border-color:var(--purple);background:rgba(139,92,246,0.1)}
-.big-input::placeholder{color:rgba(255,255,255,0.2)}
-.send-btn{width:100%;padding:14px;border:none;border-radius:14px;font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;margin-top:8px}
+/* time over banner */
+.time-over-bar{display:none;background:rgba(239,68,68,0.95);padding:12px 16px;text-align:center;flex-shrink:0}
+.time-over-bar.show{display:block}
+.time-over-btn{background:#fff;color:#dc2626;border:none;border-radius:10px;padding:10px 24px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;margin-top:6px;width:100%}
 
 .level-complete{text-align:center;padding:20px;width:100%;max-width:360px}
 .lc-emoji{font-size:4rem;margin-bottom:8px}
@@ -198,7 +201,7 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 <!-- LOBBY -->
 <div class="screen" id="s-lobby">
   <div class="logo">🏁 سباق</div>
-  <div class="user-badge" id="userBadge">
+  <div class="user-badge">
     <div style="font-size:1.5rem">🦁</div>
     <div class="user-badge-info">
       <div class="user-badge-name" id="badgeName">--</div>
@@ -213,10 +216,7 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     <button class="btn btn-lb mt8" onclick="showLeaderboard()">🏆 قائمة المتصدرين</button>
   </div>
   <div id="multiOptions" style="display:none;width:100%;max-width:360px">
-    <div class="card">
-      <h2>🏠 إنشاء غرفة</h2>
-      <button class="btn btn-gold" onclick="createRoom()">إنشاء غرفة 🎮</button>
-    </div>
+    <div class="card"><h2>🏠 إنشاء غرفة</h2><button class="btn btn-gold" onclick="createRoom()">إنشاء غرفة 🎮</button></div>
     <div class="divider">أو</div>
     <div class="card">
       <h2>🚪 انضم لغرفة</h2>
@@ -264,21 +264,33 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     <div class="lb" id="lb"></div>
   </div>
   <div class="hint-row"><div class="hint-box he" id="hintEl">اكتب تخمينك ⬇️</div></div>
-  <div class="input-row-wrap">
-    <div style="color:rgba(255,255,255,0.6);font-size:.9rem;font-weight:700;text-align:center;margin-bottom:6px">خمّن رقماً من 1 إلى 100</div>
-    <div class="inp-row">
-      <input class="inp" type="number" id="gInput" placeholder="؟" min="1" max="100" inputmode="numeric">
-      <button class="btn btn-primary" onclick="submitGuess()" style="width:auto;padding:14px 16px">🚀</button>
+  <!-- multi keyboard -->
+  <div class="kb-wrap" id="multiKb">
+    <div class="kb-range">خمّن من <span>1</span> إلى <span>100</span></div>
+    <div class="kb-display empty" id="multiDisplay">اكتب رقمك...</div>
+    <div class="kb-grid">
+      <button class="kb-btn" onclick="kbPress('multi','1')">1</button>
+      <button class="kb-btn" onclick="kbPress('multi','2')">2</button>
+      <button class="kb-btn" onclick="kbPress('multi','3')">3</button>
+      <button class="kb-btn" onclick="kbPress('multi','4')">4</button>
+      <button class="kb-btn" onclick="kbPress('multi','5')">5</button>
+      <button class="kb-btn" onclick="kbPress('multi','6')">6</button>
+      <button class="kb-btn" onclick="kbPress('multi','7')">7</button>
+      <button class="kb-btn" onclick="kbPress('multi','8')">8</button>
+      <button class="kb-btn" onclick="kbPress('multi','9')">9</button>
+      <button class="kb-btn kb-del" onclick="kbDel('multi')">⌫</button>
+      <button class="kb-btn kb-zero" onclick="kbPress('multi','0')">0</button>
+      <button class="kb-btn kb-send" id="multiSendBtn" onclick="submitGuess()">إرسال</button>
     </div>
   </div>
   <div class="ad-bar">☕ استراحة بوصالح</div>
 </div>
 
-<!-- SOLO READY — شاشة الاستعداد -->
+<!-- SOLO READY -->
 <div id="s-solo-ready">
   <div class="ready-wrap">
     <div class="ready-emoji" id="readyEmoji">🎯</div>
-    <div class="ready-level" id="readyLevel">المستوى 1</div>
+    <div class="ready-level" id="readyLevel">المستوى 1 من 10</div>
     <div class="ready-title" id="readyTitle">مبتدئ</div>
     <div class="ready-range" id="readyRange">خمّن من 1 إلى 10</div>
     <div class="ready-diff" id="readyDiff">سهل</div>
@@ -290,11 +302,14 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
 
 <!-- SOLO GAME -->
 <div id="s-solo">
+  <!-- انتهاء الوقت — يظهر في الأعلى -->
+  <div class="time-over-bar" id="timeOverBar">
+    <div style="font-size:1rem;font-weight:900">⏰ انتهى الوقت! الرقم كان <span id="secretReveal">--</span></div>
+    <button class="time-over-btn" onclick="soloGameOver()">شوف نتيجتك 📊</button>
+  </div>
   <div class="solo-header">
     <div class="round-bar">
-      <div>
-        <div class="level-badge" id="soloLevelBadge">المستوى 1</div>
-      </div>
+      <div class="level-badge" id="soloLevelBadge">المستوى 1</div>
       <div class="timer" id="soloTimer">--</div>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
@@ -305,13 +320,24 @@ canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:100}
     </div>
   </div>
   <div class="hint-row"><div class="hint-box he" id="soloHint">اكتب تخمينك ⬇️</div></div>
-  <div class="input-area">
-    <div class="range-label">
-      <small>خمّن رقماً بين</small>
-      <span id="soloRangeDisplay">1 — 10</span>
+  <!-- solo keyboard -->
+  <div class="kb-wrap" id="soloKb">
+    <div class="kb-range">خمّن من <span>1</span> إلى <span id="soloMaxDisplay">10</span></div>
+    <div class="kb-display empty" id="soloDisplay">اكتب رقمك...</div>
+    <div class="kb-grid">
+      <button class="kb-btn" onclick="kbPress('solo','1')">1</button>
+      <button class="kb-btn" onclick="kbPress('solo','2')">2</button>
+      <button class="kb-btn" onclick="kbPress('solo','3')">3</button>
+      <button class="kb-btn" onclick="kbPress('solo','4')">4</button>
+      <button class="kb-btn" onclick="kbPress('solo','5')">5</button>
+      <button class="kb-btn" onclick="kbPress('solo','6')">6</button>
+      <button class="kb-btn" onclick="kbPress('solo','7')">7</button>
+      <button class="kb-btn" onclick="kbPress('solo','8')">8</button>
+      <button class="kb-btn" onclick="kbPress('solo','9')">9</button>
+      <button class="kb-btn kb-del" onclick="kbDel('solo')">⌫</button>
+      <button class="kb-btn kb-zero" onclick="kbPress('solo','0')">0</button>
+      <button class="kb-btn kb-send" id="soloSendBtn" onclick="soloGuess()">إرسال</button>
     </div>
-    <input class="big-input" type="number" id="soloInput" placeholder="اكتب رقمك هنا..." inputmode="numeric">
-    <button class="send-btn" onclick="soloGuess()">🚀 إرسال</button>
   </div>
   <div class="ad-bar">☕ استراحة بوصالح</div>
 </div>
@@ -395,7 +421,37 @@ const LEVELS=[
 
 let myName='',myUserId='',isGuest=false;
 let roomCode='',isHost=false,roomRef=null,gData=null,canGuess=false,timerInt=null,currentRound=0;
-let soloLevel=0,soloSecret=0,soloTries=0,soloScore=0,soloTimerInt=null,soloDur=0;
+let soloLevel=0,soloSecret=0,soloTries=0,soloScore=0,soloTimerInt=null;
+
+// كيبورد مدمج
+let kbVal={solo:'',multi:''};
+
+function kbPress(mode,num){
+  if(kbVal[mode].length>=4)return;
+  kbVal[mode]+=num;
+  updateKbDisplay(mode);
+}
+function kbDel(mode){
+  kbVal[mode]=kbVal[mode].slice(0,-1);
+  updateKbDisplay(mode);
+}
+function updateKbDisplay(mode){
+  const el=document.getElementById(mode==='solo'?'soloDisplay':'multiDisplay');
+  const sendBtn=document.getElementById(mode==='solo'?'soloSendBtn':'multiSendBtn');
+  if(kbVal[mode]===''){
+    el.textContent='اكتب رقمك...';
+    el.classList.add('empty');
+    sendBtn.disabled=true;
+  }else{
+    el.textContent=kbVal[mode];
+    el.classList.remove('empty');
+    sendBtn.disabled=false;
+  }
+}
+
+// init disabled
+document.getElementById('soloSendBtn').disabled=true;
+document.getElementById('multiSendBtn').disabled=true;
 
 function ss(msg,t='i',ms=3000){
   const b=document.getElementById('sb');
@@ -438,11 +494,11 @@ async function register(){
   try{
     const snap=await db.ref(`users/${u}`).get();
     if(snap.exists()){err.textContent='هذا الاسم مأخوذ! جرب اسماً آخر';return;}
-    await db.ref(`users/${u}`).set({pass:hashPass(p),phone:hashPass(ph),createdAt:Date.now()});
+    await db.ref(`users/${u}`).set({pass:hashPass(p),phone:hashPass(ph),createdAt:Date.now(),score:0,level:0});
     myName=u;myUserId=u;isGuest=false;
     localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
     enterLobby();ss('تم إنشاء الحساب! 🎉','o');
-  }catch(e){err.textContent='خطأ في الاتصال';}
+  }catch(e){err.textContent='خطأ في الاتصال: '+e.message;}
 }
 
 async function login(){
@@ -458,7 +514,7 @@ async function login(){
     myName=u;myUserId=u;isGuest=false;
     localStorage.setItem('sabaqSession',JSON.stringify({name:u,id:u}));
     enterLobby();ss('أهلاً بك! 👋','o');
-  }catch(e){err.textContent='خطأ في الاتصال';}
+  }catch(e){err.textContent='خطأ في الاتصال: '+e.message;}
 }
 
 async function recoverAccount(){
@@ -482,8 +538,7 @@ async function recoverAccount(){
 function playAsGuest(){
   myName='ضيف_'+Math.floor(Math.random()*9000+1000);
   myUserId='guest_'+Date.now();
-  isGuest=true;
-  enterLobby();
+  isGuest=true;enterLobby();
 }
 
 function enterLobby(){
@@ -505,6 +560,7 @@ function goHome(){
   clearInterval(timerInt);clearInterval(soloTimerInt);
   roomRef?.off();currentRound=0;soloLevel=0;soloScore=0;
   document.getElementById('multiOptions').style.display='none';
+  document.getElementById('timeOverBar').classList.remove('show');
   show('s-lobby');
 }
 
@@ -518,38 +574,45 @@ async function showLeaderboard(){
   const el=document.getElementById('lbGlobal');
   el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">جاري التحميل...</div>';
   try{
-    const snap=await db.ref('leaderboard').orderByChild('level').limitToLast(20).get();
-    if(!snap.exists()){el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">لا يوجد لاعبون بعد!</div>';return;}
+    const snap=await db.ref('leaderboard').orderByChild('score').limitToLast(20).get();
+    if(!snap.exists()){
+      el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">لا يوجد لاعبون بعد! العب وسجل اسمك 🎮</div>';
+      return;
+    }
     const players=[];
-    snap.forEach(c=>players.push({...c.val(),id:c.key}));
+    snap.forEach(c=>{const v=c.val();players.push({id:c.key,name:v.name||c.key,level:v.level||0,score:v.score||0});});
     players.sort((a,b)=>b.level-a.level||b.score-a.score);
     el.innerHTML=players.map((p,i)=>`
       <div class="lb-global-item ${i===0?'top1':i===1?'top2':i===2?'top3':''} ${p.id===myUserId?'mine':''}">
-        <div class="lb-rank-num">${RANKS[i]||i+1}</div>
+        <div class="lb-rank-num">${RANKS[i]||'#'+(i+1)}</div>
         <div class="lb-user-info">
           <div class="lb-user-name">${p.name}${p.id===myUserId?' (أنت)':''}</div>
-          <div class="lb-user-level">مستوى ${p.level} — ${LEVELS[Math.min(p.level-1,9)]?.label||''}</div>
+          <div class="lb-user-level">مستوى ${p.level} — ${LEVELS[Math.min(p.level-1,9)]?.label||'مبتدئ'}</div>
         </div>
         <div style="text-align:left">
           <div class="lb-user-pts">${p.score}</div>
           <div class="lb-user-lbl">نقطة</div>
         </div>
       </div>`).join('');
-  }catch(e){el.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px">خطأ</div>';}
+  }catch(e){
+    el.innerHTML=`<div style="color:#fca5a5;text-align:center;padding:20px">خطأ: ${e.message}</div>`;
+  }
 }
 
 async function saveToLeaderboard(level,score){
   if(isGuest||!myUserId)return;
   try{
-    const snap=await db.ref(`leaderboard/${myUserId}`).get();
+    const ref=db.ref(`leaderboard/${myUserId}`);
+    const snap=await ref.get();
     if(snap.exists()){
       const old=snap.val();
-      if(level>old.level||(level===old.level&&score>old.score))
-        await db.ref(`leaderboard/${myUserId}`).update({level,score,name:myName});
+      if(level>old.level||(level===old.level&&score>old.score)){
+        await ref.set({name:myName,level,score});
+      }
     }else{
-      await db.ref(`leaderboard/${myUserId}`).set({name:myName,level,score});
+      await ref.set({name:myName,level,score});
     }
-  }catch(e){}
+  }catch(e){console.error('leaderboard error:',e);}
 }
 
 // ===== SOLO =====
@@ -560,30 +623,25 @@ function showReadyScreen(){
   document.getElementById('readyEmoji').textContent=lv.emoji;
   document.getElementById('readyLevel').textContent=`المستوى ${lv.num} من ${LEVELS.length}`;
   document.getElementById('readyTitle').textContent=lv.label;
-  document.getElementById('readyRange').textContent=`خمّن رقماً من 1 إلى ${lv.max}`;
+  document.getElementById('readyRange').textContent=`خمّن من 1 إلى ${lv.max}`;
   document.getElementById('readyTime').textContent=`⏱ عندك ${lv.time} ثانية`;
   const diff=document.getElementById('readyDiff');
-  diff.textContent=lv.diff;
-  diff.className=`ready-diff ${lv.diffClass}`;
+  diff.textContent=lv.diff;diff.className=`ready-diff ${lv.diffClass}`;
   show('s-solo-ready');
 }
 
 function beginSoloLevel(){
   const lv=LEVELS[soloLevel];
   soloSecret=Math.floor(Math.random()*lv.max)+1;
-  soloTries=0;soloDur=lv.time;
+  soloTries=0;
+  kbVal.solo='';
+  updateKbDisplay('solo');
+  document.getElementById('soloMaxDisplay').textContent=lv.max;
+  document.getElementById('timeOverBar').classList.remove('show');
   show('s-solo');
   const badge=document.getElementById('soloLevelBadge');
   badge.textContent=`${lv.emoji} المستوى ${lv.num} — ${lv.label}`;
-  badge.style.background=`${lv.color}33`;
-  badge.style.border=`1px solid ${lv.color}66`;
-  badge.style.color=lv.color;
-  badge.style.padding='6px 16px';
-  badge.style.borderRadius='99px';
-  badge.style.fontWeight='900';
-  document.getElementById('soloRangeDisplay').textContent=`1 — ${lv.max}`;
-  document.getElementById('soloInput').value='';
-  document.getElementById('soloInput').max=lv.max;
+  badge.style.cssText=`background:${lv.color}22;border:1px solid ${lv.color}55;color:${lv.color};padding:6px 14px;border-radius:99px;font-weight:900;font-size:.88rem`;
   document.getElementById('soloHint').textContent='اكتب تخمينك ⬇️';
   document.getElementById('soloHint').className='hint-box he';
   document.getElementById('soloScore').textContent=soloScore;
@@ -604,19 +662,29 @@ function startSoloTimer(dur){
     el.textContent=left;
   };
   upd();
-  soloTimerInt=setInterval(()=>{left--;upd();if(left<=0){clearInterval(soloTimerInt);soloGameOver();}},1000);
+  soloTimerInt=setInterval(()=>{
+    left--;upd();
+    if(left<=0){
+      clearInterval(soloTimerInt);
+      // أظهر شريط انتهاء الوقت في الأعلى
+      document.getElementById('secretReveal').textContent=soloSecret;
+      document.getElementById('timeOverBar').classList.add('show');
+      document.getElementById('soloSendBtn').disabled=true;
+    }
+  },1000);
 }
 
 function soloGuess(){
-  const inp=document.getElementById('soloInput');
+  const v=parseInt(kbVal.solo);
   const lv=LEVELS[soloLevel];
-  const v=parseInt(inp.value);
   if(isNaN(v)||v<1||v>lv.max){ss(`أدخل رقماً من 1 إلى ${lv.max}`,'e');return;}
-  soloTries++;inp.value='';
+  soloTries++;
+  kbVal.solo='';updateKbDisplay('solo');
   document.getElementById('soloTries').textContent=soloTries;
   const hint=document.getElementById('soloHint');
   if(v===soloSecret){
     clearInterval(soloTimerInt);
+    document.getElementById('timeOverBar').classList.remove('show');
     const pts=Math.max(10,100-(soloTries-1)*15);
     soloScore+=pts;
     saveToLeaderboard(lv.num,soloScore);
@@ -735,9 +803,9 @@ function onPlaying(d){
   const isNewRound=d.round!==currentRound;
   if(isNewRound){
     currentRound=d.round;show('s-game');canGuess=true;
+    kbVal.multi='';updateKbDisplay('multi');
+    document.getElementById('multiSendBtn').disabled=true;
     document.getElementById('roundLabel').textContent=`الجولة ${d.round}/${d.totalRounds}`;
-    document.getElementById('gInput').value='';
-    document.getElementById('gInput').disabled=false;
     const h=document.getElementById('hintEl');
     h.textContent='اكتب تخمينك ⬇️';h.className='hint-box he';
     runTimer(d.startTime);
@@ -770,13 +838,12 @@ function updateLB(d){
 
 async function submitGuess(){
   if(!canGuess)return;
-  const inp=document.getElementById('gInput');
-  const v=parseInt(inp.value);
+  const v=parseInt(kbVal.multi);
   if(isNaN(v)||v<1||v>100){ss('أدخل رقماً من 1 إلى 100','e');return;}
   const secret=gData.secret;
   const tries=(gData.players[myUserId]?.tries||0)+1;
   await db.ref(`rooms/${roomCode}/players/${myUserId}/tries`).set(tries);
-  inp.value='';
+  kbVal.multi='';updateKbDisplay('multi');
   const hint=document.getElementById('hintEl');
   if(v===secret){
     canGuess=false;clearInterval(timerInt);
@@ -798,7 +865,7 @@ async function submitGuess(){
 
 function onRoundEnd(d){
   clearInterval(timerInt);canGuess=false;updateLB(d);
-  document.getElementById('gInput').disabled=true;
+  document.getElementById('multiSendBtn').disabled=true;
   const w=d.players[d.winner];
   if(w&&d.winner!==myUserId)ss(`${w.emoji} ${w.name} فاز! الرقم كان ${d.secret}`,'i',3500);
   else if(!d.winner)ss(`⏰ انتهى الوقت! الرقم كان ${d.secret}`,'i',3500);
@@ -857,11 +924,6 @@ window.onload=()=>{
   const s=localStorage.getItem('sabaqSession');
   if(s){const u=JSON.parse(s);myName=u.name;myUserId=u.id;isGuest=false;enterLobby();}
 };
-
-document.getElementById('gInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitGuess();});
-document.getElementById('soloInput').addEventListener('keydown',e=>{if(e.key==='Enter')soloGuess();});
-document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')login();});
-document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')login();});
 </script>
 </body>
-  </html>
+</html>
